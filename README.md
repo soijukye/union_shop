@@ -116,22 +116,45 @@ From the Dimensions menu, select a mobile device preset (e.g., iPhone 12 Pro, Pi
 
 ![Device Selection](https://raw.githubusercontent.com/manighahrmani/sandwich_shop/refs/heads/main/images/screenshot_chrome_devtools_device_selection.png)
 
-## Assessment Criteria
+## Marking Criteria
 
-Your objective is to reimplement as many features from the existing [Union Shop website](https://shop.upsu.net) as you can in your forked repository using Flutter.
+Your objective is to reimplement as many features from the existing [Union Shop website](https://shop.upsu.net) as you can in your forked repository using Flutter. The table below is an almost comprehensive list of features present on the website, sorted by difficulty level. Each feature has a corresponding percentage value indicating its weight and a reference link to the relevant page on the actual website.
 
-Here is non-exhaustive list of features you need to implement:
+⚠️ Note that this assessment focuses on functionality over visual design (do not spend a lot of time making it look exactly like the real website).
 
-- Homepage layout and design
-- Product listing page
-- Product detail page
-- Shopping cart functionality
-- User authentication (login/signup)
-- Responsive design for mobile and desktop
+### Requirements
 
-The coursework document (also available on Moodle and the [homepage](https://manighahrmani.github.io/sandwich_shop/)) provided more details on the assessment criteria:
+| Feature | Description | Marks (%) | Reference |
+|---------|-------------|-----------|-----------|
+| **Basic (40%)** | | | |
+| Static Homepage | Homepage layout and widgets with static content (hardcoded data* acceptable, mobile view focus) | 5% | [Homepage](https://shop.upsu.net/) |
+| Static Navbar | Top navigation bar with menu (links do not have to work at this stage, mobile view focus) | 5% | [Homepage](https://shop.upsu.net/) |
+| About Us Page | Static about us page with company information (separate page from homepage) | 5% | [About Us](https://shop.upsu.net/pages/about-us) |
+| Footer | Footer with dummy* links and information present in at least one page | 4% | [Homepage](https://shop.upsu.net/) |
+| Dummy* Collections Page | Page displaying various collections of products (hardcoded data* acceptable) | 5% | [Collections](https://shop.upsu.net/collections/) |
+| Dummy* Collection Page | Page displaying products within one collection including dropdowns and filters (hardcoded data* acceptable, widgets do not have to function) | 5% | [Collection Example](https://shop.upsu.net/collections/autumn-favourites) |
+| Dummy* Product Page | Product page showing details and images with dropdowns, buttons and widgets (hardcoded data* acceptable, widgets do not have to function) | 4% | [Product Example](https://shop.upsu.net/collections/autumn-favourites/products/classic-sweatshirt-1) |
+| Sale Collection | Page showing sale products with discounted prices and promotional messaging (hardcoded data* acceptable, widgets do not have to function) | 4% | [Sale Items](https://shop.upsu.net/collections/sale-items) |
+| Authentication UI | Login/signup page with the relevant forms (widgets do not have to function) | 3% | [Sign In](https://shop.upsu.net/account/login) |
+| **Intermediate (35%)** | | | |
+| Dynamic Collections | Collections page populated from data models or services with functioning sorting, filtering, pagination widgets | 6% | [Collections](https://shop.upsu.net/collections/) |
+| Dynamic Product Listings | Product listings of a collection populated from data models or services with functioning sorting, filtering, pagination widgets | 7% | [Collection Example](https://shop.upsu.net/collections/autumn-favourites) |
+| Functional Product Pages | Product pages populated from data models or services with functioning dropdowns and counters (add to cart buttons do not have to work yet) | 7% | [Product Example](https://shop.upsu.net/collections/autumn-favourites/products/classic-sweatshirt-1) |
+| Shopping Cart | Add items to cart, view cart page, basic cart functionality (checkout buttons should place order without real monetary transactions) | 7% | [Cart](https://shop.upsu.net/cart) |
+| Print Shack Forms | Text personalisation page with associated about page, the form must dynamically update based on selected fields | 3% | [Personalisation](https://shop.upsu.net/products/personalise-text) |
+| Responsiveness* | The layout of the application should be adaptive and the application should function on desktop in addition to mobile view (no need to test it on real devices) | 5% | All pages |
+| **Advanced (25%)** | | | |
+| Authentication System | Full user authentication and account management (you can implement this with other external authentications like Google, not just Shop), includes the account dashboard and all relevant functionality | 8% | [Account](https://shop.upsu.net/account) |
+| Cart Management | Full cart functionality including quantity editing/removal, price calculations and persistence | 6% | [Cart](https://shop.upsu.net/cart) |
+| Search System | Complete search functionality (search buttons should function on the navbar and the footer) | 4% | [Search](https://shop.upsu.net/search) |
 
-**[Coursework Document](https://portdotacdotuk-my.sharepoint.com/:w:/g/personal/mani_ghahremani_port_ac_uk/EbM1UcwOHMRLmcKeI0btHqYBeZ3ADWjyN0EXBWdHLhsO_g?e=FDEQLt)**
+### Terminology
+
+***Hardcoded data** refers to data that is written directly into your Flutter code. These are fixed values rather than data loaded from external sources like APIs, databases, or other services.
+
+***Dummy data** is data that is often hardcoded or (AI) generated for display or testing purposes. It is not meant to represent real-world data stored in your services.
+
+***Responsiveness** refers to the ability of your application to adapt its layout and design based on the screen size and orientation of the device it is being viewed on. Your app should primarily focus on mobile view but to achieve full marks in this section, it should also function correctly on wider screens (desktop view).
 
 ## Submission
 
