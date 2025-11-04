@@ -232,9 +232,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-          
 
-            
             Container(
               color: Colors.white,
               child: Padding(
@@ -262,6 +260,8 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Essential T-shirt',
                           price: '£10.00',
+                          showStrikethrough: true,
+                          newPrice: '£6.99',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
                         ),
@@ -342,12 +342,16 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final bool showStrikethrough;
+  final String? newPrice;
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.showStrikethrough = false,
+    this.newPrice,
   });
 
   @override
@@ -383,10 +387,32 @@ class ProductCard extends StatelessWidget {
                 maxLines: 2,
               ),
               const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
+              showStrikethrough && newPrice != null
+                  ? Row(
+                      children: [
+                        Text(
+                          price,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          newPrice!,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.blue[700],
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  : Text(
+                      price,
+                      style: const TextStyle(fontSize: 13, color: Colors.grey),
+                    ),
             ],
           ),
         ],
