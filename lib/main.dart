@@ -165,7 +165,7 @@ class HomeScreen extends StatelessWidget {
               height: 400,
               width: double.infinity,
               child: Stack(
-                children: [ 
+                children: [
                   // Background image
                   Positioned.fill(
                     child: Container(
@@ -222,7 +222,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            'BROWSE PRODUCTS',
+                            'BROWSE COLLECTION',
                             style: TextStyle(fontSize: 14, letterSpacing: 1),
                           ),
                         ),
@@ -232,14 +232,43 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+          
 
-            // Products Section
+            
             Container(
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(40.0),
                 child: Column(
                   children: [
+                    // Essentials section
+                    const Text(
+                      'ESSENTIALS SECTION',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 48,
+                      children: const [
+                        ProductCard(
+                          title: 'Essential T-shirt',
+                          price: '£10.00',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 48),
+                    // Products Section
                     const Text(
                       'PRODUCTS SECTION',
                       style: TextStyle(
