@@ -165,7 +165,7 @@ class HomeScreen extends StatelessWidget {
               height: 400,
               width: double.infinity,
               child: Stack(
-                children: [
+                children: [ 
                   // Background image
                   Positioned.fill(
                     child: Container(
@@ -193,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          'Placeholder Hero Title',
+                          'BIG SALE NOW ON!',
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -203,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         const Text(
-                          "This is placeholder text for the hero section.",
+                          "Save over 20% on our essential range of products. Don't miss out on these limited-time offers available while stocks last!",
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,
