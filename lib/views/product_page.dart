@@ -210,7 +210,7 @@ class _ProductPageState extends State<ProductPage> {
 
                   const SizedBox(height: 16),
 
-                  // Color and Size dropdowns in a row
+                  // Color and Size dropdowns
                   Row(
                     children: [
                       Expanded(
@@ -253,6 +253,39 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                     ],
+                  ),
+
+                  const SizedBox(height: 16),
+                  //quantity
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    initialValue: '1',
+                    decoration: const InputDecoration(
+                      labelText: 'Quantity',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+                  // Add to cart button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: placeholderCallbackForButtons,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        side: const BorderSide(color: Colors.grey),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      child: const Text(
+                        'Add to Cart',
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                    ),
                   ),
 
                   const SizedBox(height: 24),
