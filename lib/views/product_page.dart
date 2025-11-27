@@ -210,46 +210,70 @@ class _ProductPageState extends State<ProductPage> {
 
                   const SizedBox(height: 16),
 
-                  // Color and Size dropdowns
+                  // Color and Size dropdowns below their labels
                   Row(
                     children: [
                       Expanded(
-                        child: DropdownButtonFormField<String>(
-                          value: selectedColor,
-                          items: colors.map((color) {
-                            return DropdownMenuItem(
-                              value: color,
-                              child: Text(color),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() => selectedColor = value);
-                          },
-                          decoration: const InputDecoration(
-                            labelText: 'Color',
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Color', style: TextStyle(fontSize: 16)),
+                            const SizedBox(height: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: DropdownButton<String>(
+                                isExpanded: true,
+                                value: selectedColor,
+                                items: colors.map((color) {
+                                  return DropdownMenuItem(
+                                    value: color,
+                                    child: Text(color),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() => selectedColor = value);
+                                },
+                                hint: const Text('Select Color'),
+                                underline: const SizedBox(),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: DropdownButtonFormField<String>(
-                          value: selectedSize,
-                          items: sizes.map((size) {
-                            return DropdownMenuItem(
-                              value: size,
-                              child: Text(size),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() => selectedSize = value);
-                          },
-                          decoration: const InputDecoration(
-                            labelText: 'Size',
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Size', style: TextStyle(fontSize: 16)),
+                            const SizedBox(height: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: DropdownButton<String>(
+                                isExpanded: true,
+                                value: selectedSize,
+                                items: sizes.map((size) {
+                                  return DropdownMenuItem(
+                                    value: size,
+                                    child: Text(size),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() => selectedSize = value);
+                                },
+                                hint: const Text('Select Size'),
+                                underline: const SizedBox(),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
