@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 
+
 class ProductCard extends StatelessWidget {
   final String title;
   final String price;
@@ -41,6 +42,7 @@ class ProductCard extends StatelessWidget {
               },
             ),
           ),
+          // Title and Price
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -77,6 +79,7 @@ class ProductCard extends StatelessWidget {
                       price,
                       style: const TextStyle(fontSize: 13, color: Colors.grey),
                     ),
+              const SizedBox(height: 8),
             ],
           ),
         ],

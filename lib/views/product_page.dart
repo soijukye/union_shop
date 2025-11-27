@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/theme/app_styles.dart';
 import 'package:union_shop/widgets/dropdown_menu.dart';
-class ProductPage extends StatelessWidget {
+
+class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  String? selectedColor;
+  String? selectedSize;
+
+  final List<String> colors = ['Red', 'Blue', 'Green'];
+  final List<String> sizes = ['S', 'M', 'L', 'XL'];
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
+  void placeholderCallbackForButtons() {}
 
   @override
   Widget build(BuildContext context) {
@@ -195,6 +205,53 @@ class ProductPage extends StatelessWidget {
                   const Row(
                     children: [
                       PriceStyle(oldPrice: '£10.00', newPrice: '£6.99')
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // Color and Size dropdowns in a row
+                  Row(
+                    children: [
+                      Expanded(
+                        child: DropdownButtonFormField<String>(
+                          value: selectedColor,
+                          items: colors.map((color) {
+                            return DropdownMenuItem(
+                              value: color,
+                              child: Text(color),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() => selectedColor = value);
+                          },
+                          decoration: const InputDecoration(
+                            labelText: 'Color',
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: DropdownButtonFormField<String>(
+                          value: selectedSize,
+                          items: sizes.map((size) {
+                            return DropdownMenuItem(
+                              value: size,
+                              child: Text(size),
+                            );
+                          }).toList(),
+                          onChanged: (value) {
+                            setState(() => selectedSize = value);
+                          },
+                          decoration: const InputDecoration(
+                            labelText: 'Size',
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
 
