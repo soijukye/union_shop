@@ -24,11 +24,8 @@ class SimpleDropdownMenu extends StatelessWidget {
   static void show(BuildContext context) {
     final overlay = Overlay.of(context);
     OverlayEntry? entry;
-    // Calculate header height (icons + logo)
-    final RenderBox? headerBox = context.findRenderObject() is RenderBox
-        ? context.findRenderObject() as RenderBox
-        : null;
-    final double headerHeight = headerBox?.size.height ?? kToolbarHeight * 2;
+    // Use a fixed header height for dropdown position
+    const double headerHeight = 100;
     entry = OverlayEntry(
       builder: (context) => Stack(
         children: [
