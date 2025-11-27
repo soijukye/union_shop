@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/widgets/footer_widget.dart';
+import '../widgets/footer_widget.dart';
+import '../widgets/dropdown_menu.dart';
+
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({Key? key}) : super(key: key);
 
@@ -120,7 +122,7 @@ class AboutUsPage extends StatelessWidget {
                                           minWidth: 32,
                                           minHeight: 32,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () => SimpleDropdownMenu.show(context),
                                       ),
                                     ],
                                   ),
