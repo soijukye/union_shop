@@ -11,32 +11,49 @@ class FooterWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 '© 2024 Union Shop',
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.2,
                 ),
               ),
               Row(
                 children: [
                   TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[700],
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
                     onPressed: () {
                       // Navigate to Terms
                     },
                     child: const Text('Terms'),
                   ),
                   TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[700],
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
                     onPressed: () {
                       // Navigate to Privacy
                     },
                     child: const Text('Privacy'),
                   ),
                   TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[700],
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      textStyle: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
                     onPressed: () {
                       // Navigate to Contact
                     },
