@@ -148,7 +148,7 @@ class ProductPage extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
-                        'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_720x.png?v=1759827236',
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
@@ -180,7 +180,7 @@ class ProductPage extends StatelessWidget {
 
                   // Product name
                   const Text(
-                    'Placeholder Product Name',
+                    'Essential T-Shirt',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -192,7 +192,7 @@ class ProductPage extends StatelessWidget {
 
                   // Product price
                   const Text(
-                    '£15.00',
+                    '£6.99',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
