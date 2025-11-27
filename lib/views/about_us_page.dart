@@ -180,7 +180,7 @@ class AboutUsPage extends StatelessWidget {
               ),
             ),
           ),
-          FooterWidget(),
+          const FooterWidget(),
         ],
       ),
     );
