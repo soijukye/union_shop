@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/dropdown_menu.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 
@@ -123,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: () => SimpleDropdownMenu.show(context),
                                 ),
                               ],
                             ),
