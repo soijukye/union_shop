@@ -194,14 +194,7 @@ class ProductPage extends StatelessWidget {
                   // Product price
                   const Row(
                     children: [
-                      Text(
-                        '£10.00',
-                        style: PriceStyle.oldPrice,
-                      ),
-                      Text(
-                        '£6.99',
-                        style: PriceStyle.newPrice,
-                      ),
+                      PriceStyle(oldPrice: '£10.00', newPrice: '£6.99')
                     ],
                   ),
 
@@ -235,11 +228,11 @@ class ProductPage extends StatelessWidget {
               color: Colors.grey[50],
               padding: const EdgeInsets.all(24),
               child: const Text(
-                'Placeholder Footer',
+                '© 2025, upsu-store Powered by Shopify',
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w100,
                 ),
               ),
             ),
