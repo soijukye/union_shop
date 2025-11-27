@@ -172,8 +172,8 @@ class AboutUsPage extends StatelessWidget {
                 ),
               ),
             ),
-            // Footer (identical to other pages)
-            FooterWidget(), // Replace with the actual footer widget name
+            
+            FooterWidget(),
           ],
         ),
       ),
