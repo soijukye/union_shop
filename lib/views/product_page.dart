@@ -105,7 +105,7 @@ class ProductPage extends StatelessWidget {
                                     minWidth: 32,
                                     minHeight: 32,
                                   ),
-                                  onPressed: placeholderCallbackForButtons,
+                                  onPressed: placeholderCallbackForButtons, 
                                 ),
                                 IconButton(
                                   icon: const Icon(

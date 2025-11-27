@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/models/product_card.dart';
+import 'package:union_shop/widgets/product_card.dart';
 
 
 class HomeScreen extends StatelessWidget {
