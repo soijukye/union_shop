@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/theme/app_styles.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
@@ -191,13 +192,17 @@ class ProductPage extends StatelessWidget {
                   const SizedBox(height: 12),
 
                   // Product price
-                  const Text(
-                    '£6.99',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF4d2963),
-                    ),
+                  const Row(
+                    children: [
+                      Text(
+                        '£10.00',
+                        style: PriceStyle.oldPrice,
+                      ),
+                      Text(
+                        '£6.99',
+                        style: PriceStyle.newPrice,
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: 24),
@@ -213,7 +218,7 @@ class ProductPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'This is a placeholder description for the product. Students should replace this with real product information and implement proper data management.',
+                    'Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe\'s been waiting for.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
