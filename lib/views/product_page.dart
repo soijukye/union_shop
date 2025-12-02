@@ -16,6 +16,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   String? selectedColor;
   String? selectedSize;
+  int quantity = 1;
 
   final List<String> colors = ['Red', 'Blue', 'Green'];
   final List<String> sizes = ['S', 'M', 'L', 'XL'];
@@ -28,7 +29,6 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -38,22 +38,17 @@ class _ProductPageState extends State<ProductPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Header
-                  // TopNavBar widget
                   TopNavBar(
                     onLogoTap: (ctx) => navigateToHome(ctx),
                     onSearch: placeholderCallbackForButtons,
                     onBag: placeholderCallbackForButtons,
                   ),
-
-                  // Product details
                   Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Product image
                         Container(
                           height: 300,
                           width: double.infinity,
@@ -91,10 +86,7 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 24),
-
-                        // Product name
                         const Text(
                           'Essential T-Shirt',
                           style: TextStyle(
@@ -103,24 +95,18 @@ class _ProductPageState extends State<ProductPage> {
                             color: Colors.black,
                           ),
                         ),
-
                         const SizedBox(height: 12),
-
-                        // Product price
                         const Row(
                           children: [
                             PriceStyle(oldPrice: '\u00a310.00', newPrice: '\u00a36.99')
                           ],
                         ),
-
                         const SizedBox(height: 16),
-
-                        // Color and Size dropdowns
                         Row(
                           children: [
                             Expanded(
                               child: DropdownButtonFormField<String>(
-                                initialValue: selectedColor,
+                                value: selectedColor,
                                 items: colors.map((color) {
                                   return DropdownMenuItem(
                                     value: color,
@@ -140,7 +126,7 @@ class _ProductPageState extends State<ProductPage> {
                             const SizedBox(width: 16),
                             Expanded(
                               child: DropdownButtonFormField<String>(
-                                initialValue: selectedSize,
+                                value: selectedSize,
                                 items: sizes.map((size) {
                                   return DropdownMenuItem(
                                     value: size,
@@ -159,26 +145,44 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ],
                         ),
-
                         const SizedBox(height: 16),
-                        //quantity
                         TextFormField(
                           keyboardType: TextInputType.number,
-                          initialValue: '1',
+                          initialValue: quantity.toString(),
                           decoration: const InputDecoration(
                             labelText: 'Quantity',
                             border: OutlineInputBorder(),
                             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           ),
+                          onChanged: (val) {
+                            final parsed = int.tryParse(val);
+                            if (parsed != null && parsed > 0) {
+                              setState(() => quantity = parsed);
+                            }
+                          },
                         ),
-
                         const SizedBox(height: 16),
-                        // Add to cart button
                         SizedBox(
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: placeholderCallbackForButtons,
+                            onPressed: (selectedSize == null || quantity < 1)
+                                ? null
+                                : () {
+                                    final cartItem = CartItem(
+                                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                      productName: 'Essential T-shirt',
+                                      imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                                      size: selectedSize!,
+                                      price: 6.99,
+                                      quantity: quantity,
+                                    );
+                                    widget.cartModel.addItem(cartItem);
+                                    setState(() {});
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Added to cart!')),
+                                    );
+                                  },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
                               side: const BorderSide(color: Colors.grey),
@@ -192,10 +196,7 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 24),
-
-                        // Product description
                         const Text(
                           'Description',
                           style: TextStyle(
