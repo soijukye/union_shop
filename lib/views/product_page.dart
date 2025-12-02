@@ -205,15 +205,15 @@ class _ProductPageState extends State<ProductPage> {
                                     );
                                   },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              side: const BorderSide(color: Colors.grey),
+                              backgroundColor: const Color(0xFF4d2963),
+                              foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
                               ),
                             ),
                             child: const Text(
                               'Add to Cart',
-                              style: TextStyle(fontSize: 16, color: Colors.black),
+                              style: TextStyle(fontSize: 16, color: Colors.white),
                             ),
                           ),
                         ),
