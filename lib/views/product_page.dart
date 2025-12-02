@@ -44,16 +44,26 @@ class _ProductPageState extends State<ProductPage> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
+          TopNavBar(
+            onLogoTap: (ctx) => navigateToHome(ctx),
+            onSearch: () => navigateToSearch(context),
+            onBag: () => navigateToCart(context),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8, top: 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TopNavBar(
-                    onLogoTap: (ctx) => navigateToHome(ctx),
-                    onSearch: () => navigateToSearch(context),
-                    onBag: () => navigateToCart(context),
-                  ),
                   Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(24),

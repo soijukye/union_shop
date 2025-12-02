@@ -13,7 +13,16 @@ class AboutUsPage extends StatelessWidget {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
-  void placeholderCallbackForButtons() {}
+  void navigateToCart(BuildContext context) {
+    Navigator.pushNamed(context, '/cart');
+  }
+
+  void navigateToSearch(BuildContext context) {
+    // Placeholder: implement search navigation if you have a search page
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Search not implemented.')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +38,18 @@ class AboutUsPage extends StatelessWidget {
               children: [
                 TopNavBar(
                   onLogoTap: (ctx) => navigateToHome(ctx),
-                  onSearch: placeholderCallbackForButtons,
-                  onBag: placeholderCallbackForButtons,
+                  onSearch: () => navigateToSearch(context),
+                  onBag: () => navigateToCart(context),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8, top: 8),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: SingleChildScrollView(

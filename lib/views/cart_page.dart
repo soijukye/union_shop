@@ -34,6 +34,16 @@ class _CartPageState extends State<CartPage> {
 										Navigator.pushNamedAndRemoveUntil(ctx, '/', (route) => false);
 									},
 								),
+								Padding(
+									padding: const EdgeInsets.only(left: 8, top: 8),
+									child: Align(
+										alignment: Alignment.centerLeft,
+										child: IconButton(
+											icon: const Icon(Icons.arrow_back),
+											onPressed: () => Navigator.pop(context),
+										),
+									),
+								),
 								Expanded(
 									child: SingleChildScrollView(
 										child: Container(
