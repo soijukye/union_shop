@@ -76,7 +76,8 @@ class _CartPageState extends State<CartPage> {
 											letterSpacing: 1,
 										),
 									),
-									const SizedBox(height: 32),
+									// Increased space between title and cart contents
+									const SizedBox(height: 48),
 									Container(
 										padding: const EdgeInsets.all(24),
 										decoration: BoxDecoration(
@@ -93,9 +94,15 @@ class _CartPageState extends State<CartPage> {
 										child: Column(
 											children: [
 												if (widget.cartModel.items.isEmpty)
-													const Padding(
-														padding: EdgeInsets.all(16.0),
-														child: Text('Your cart is empty.'),
+													// Keep empty box similar size as if three items were present
+													SizedBox(
+														height: 370,
+														child: Center(
+															child: Text(
+																'Your cart is empty.',
+																style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+															),
+														),
 													)
 												else ...[
 													for (final item in widget.cartModel.items) ...[
