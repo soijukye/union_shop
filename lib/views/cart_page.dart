@@ -21,7 +21,7 @@ class _CartPageState extends State<CartPage> {
 
 	@override
 	Widget build(BuildContext context) {
-			// TEMPORARY NOTE: You are on the CartPage
+		// TEMPORARY NOTE: You are on the CartPage
 		return Scaffold(
 			backgroundColor: Colors.white,
 			body: LayoutBuilder(
@@ -37,13 +37,31 @@ class _CartPageState extends State<CartPage> {
 									},
 								),
 								Padding(
-									padding: const EdgeInsets.only(left: 8, top: 8),
-									child: Align(
-										alignment: Alignment.centerLeft,
-										child: IconButton(
-											icon: const Icon(Icons.arrow_back),
-											onPressed: () => Navigator.pop(context),
-										),
+									padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
+									child: Row(
+										mainAxisAlignment: MainAxisAlignment.spaceBetween,
+										children: [
+											Align(
+												alignment: Alignment.centerLeft,
+												child: IconButton(
+													icon: const Icon(Icons.arrow_back),
+													onPressed: () => Navigator.pop(context),
+												),
+											),
+											if (widget.cartModel.items.isNotEmpty)
+												IconButton(
+													icon: const Icon(Icons.clear),
+													tooltip: 'Clear Cart',
+													onPressed: () {
+														setState(() {
+															widget.cartModel.clear();
+														});
+														ScaffoldMessenger.of(context).showSnackBar(
+															const SnackBar(content: Text('Cart cleared!'), duration: Duration(seconds: 1)),
+														);
+													},
+												),
+										],
 									),
 								),
 								Expanded(
