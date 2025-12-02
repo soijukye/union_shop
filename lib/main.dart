@@ -3,6 +3,7 @@ import 'package:union_shop/views/about_us_page.dart';
 import 'package:union_shop/views/product_page.dart';
 import 'package:union_shop/views/home_screen.dart';
 import 'package:union_shop/views/cart_page.dart';
+import 'package:union_shop/views/checkout_page.dart';
 import 'package:union_shop/models/cart_model.dart';
 
 
@@ -34,6 +35,7 @@ class _UnionShopAppState extends State<UnionShopApp> {
         '/product': (context) => ProductPage(cartModel: cartModel),
         '/about': (context) => AboutUsPage(cartModel: cartModel),
         '/cart': (context) => CartPage(cartModel: cartModel),
+        '/checkout': (context) => CheckoutPage(cartModel: cartModel),
       },
     );
   }

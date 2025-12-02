@@ -192,7 +192,11 @@ class _CartPageState extends State<CartPage> {
 																	SizedBox(
 																		width: double.infinity,
 																		child: ElevatedButton(
-																			onPressed: widget.cartModel.items.isEmpty ? null : () {},
+																			onPressed: widget.cartModel.items.isEmpty
+																					? null
+																					: () {
+																							Navigator.pushNamed(context, '/checkout');
+																						},
 																			style: ElevatedButton.styleFrom(
 																				backgroundColor: const Color(0xFF4d2963),
 																				foregroundColor: Colors.white,
