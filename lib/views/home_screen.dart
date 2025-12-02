@@ -4,8 +4,11 @@ import 'package:union_shop/widgets/product_card.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
 
 
+import 'package:union_shop/models/cart_model.dart';
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final CartModel cartModel;
+  const HomeScreen({super.key, required this.cartModel});
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);

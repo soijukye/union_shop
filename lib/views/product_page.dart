@@ -3,8 +3,11 @@ import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/theme/app_styles.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 
+import 'package:union_shop/models/cart_model.dart';
+
 class ProductPage extends StatefulWidget {
-  const ProductPage({super.key});
+  final CartModel cartModel;
+  const ProductPage({super.key, required this.cartModel});
 
   @override
   State<ProductPage> createState() => _ProductPageState();

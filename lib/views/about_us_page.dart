@@ -3,8 +3,11 @@ import '../widgets/footer_widget.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 
 
+import 'package:union_shop/models/cart_model.dart';
+
 class AboutUsPage extends StatelessWidget {
-  const AboutUsPage({Key? key}) : super(key: key);
+  final CartModel cartModel;
+  const AboutUsPage({Key? key, required this.cartModel}) : super(key: key);
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
