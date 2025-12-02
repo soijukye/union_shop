@@ -4,9 +4,18 @@ import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/models/cart_item.dart';
 
-class ProductDetailsPage extends StatelessWidget {
+class ProductDetailsPage extends StatefulWidget {
   final Map<String, dynamic> product;
   const ProductDetailsPage({Key? key, required this.product}) : super(key: key);
+
+  @override
+  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+}
+
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  String? selectedColor;
+  String? selectedSize;
+  int quantity = 1;
   static final List<String> colors = ['Red', 'Blue', 'Green'];
   static final List<String> sizes = ['S', 'M', 'L', 'XL'];
   static final Map<String, Map<String, dynamic>> productDefaults = {
@@ -46,18 +55,16 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartModel = product['cartModel'];
-    String? selectedColor;
-    String? selectedSize;
-    int quantity = 1;
+    final cartModel = widget.product['cartModel'];
     // Merge product with defaults for missing fields
-    final String title = product['title'] ?? '';
+    final String title = widget.product['title'] ?? '';
     final Map<String, dynamic> defaults = productDefaults[title] ?? {};
-    final String price = product['price'] ?? defaults['price'] ?? '';
-    final bool showStrikethrough = product['showStrikethrough'] ?? defaults['showStrikethrough'] ?? false;
-    final String? newPrice = product['newPrice'] ?? defaults['newPrice'];
-    final String imageUrl = product['imageUrl'] ?? defaults['imageUrl'] ?? '';
-    final String description = product['description'] ?? defaults['description'] ?? 'No description available.';
+    final String price = widget.product['price'] ?? defaults['price'] ?? '';
+    final bool showStrikethrough = widget.product['showStrikethrough'] ?? defaults['showStrikethrough'] ?? false;
+    final String? newPrice = widget.product['newPrice'] ?? defaults['newPrice'];
+    final String imageUrl = widget.product['imageUrl'] ?? defaults['imageUrl'] ?? '';
+    final String description = widget.product['description'] ?? defaults['description'] ?? 'No description available.';
+    bool isButtonEnabled = (selectedSize != null && quantity > 0);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -168,7 +175,9 @@ class ProductDetailsPage extends StatelessWidget {
                                   );
                                 }).toList(),
                                 onChanged: (value) {
-                                  selectedColor = value;
+                                  setState(() {
+                                    selectedColor = value;
+                                  });
                                 },
                                 decoration: const InputDecoration(
                                   labelText: 'Color',
@@ -188,7 +197,9 @@ class ProductDetailsPage extends StatelessWidget {
                                   );
                                 }).toList(),
                                 onChanged: (value) {
-                                  selectedSize = value;
+                                  setState(() {
+                                    selectedSize = value;
+                                  });
                                 },
                                 decoration: const InputDecoration(
                                   labelText: 'Size',
@@ -210,9 +221,13 @@ class ProductDetailsPage extends StatelessWidget {
                           ),
                           onChanged: (val) {
                             final parsed = int.tryParse(val);
-                            if (parsed != null && parsed > 0) {
-                              quantity = parsed;
-                            }
+                            setState(() {
+                              if (parsed != null && parsed > 0) {
+                                quantity = parsed;
+                              } else {
+                                quantity = 0;
+                              }
+                            });
                           },
                         ),
                         const SizedBox(height: 16),
@@ -220,25 +235,27 @@ class ProductDetailsPage extends StatelessWidget {
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: () {
-                              if (cartModel != null) {
-                                cartModel.addItem(
-                                  CartItem(
-                                    id: DateTime.now().millisecondsSinceEpoch.toString(),
-                                    productName: title,
-                                    imageUrl: imageUrl,
-                                    size: selectedSize ?? '',
-                                    price: double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
-                                    quantity: quantity,
-                                  ),
-                                );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Added to cart!')),
-                                );
-                              }
-                            },
+                            onPressed: isButtonEnabled
+                                ? () {
+                                    if (cartModel != null) {
+                                      cartModel.addItem(
+                                        CartItem(
+                                          id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                          productName: title,
+                                          imageUrl: imageUrl,
+                                          size: selectedSize ?? '',
+                                          price: double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                                          quantity: quantity,
+                                        ),
+                                      );
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(content: Text('Added to cart!')),
+                                      );
+                                    }
+                                  }
+                                : null,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF4d2963),
+                              backgroundColor: isButtonEnabled ? const Color(0xFF4d2963) : Colors.grey,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4),
