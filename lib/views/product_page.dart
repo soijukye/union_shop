@@ -27,7 +27,16 @@ class _ProductPageState extends State<ProductPage> {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
-  void placeholderCallbackForButtons() {}
+  void navigateToCart(BuildContext context) {
+    Navigator.pushNamed(context, '/cart');
+  }
+
+  void navigateToSearch(BuildContext context) {
+    // Placeholder: implement search navigation if you have a search page
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Search not implemented.')),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +51,8 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   TopNavBar(
                     onLogoTap: (ctx) => navigateToHome(ctx),
-                    onSearch: placeholderCallbackForButtons,
-                    onBag: placeholderCallbackForButtons,
+                    onSearch: () => navigateToSearch(context),
+                    onBag: () => navigateToCart(context),
                   ),
                   Container(
                     color: Colors.white,
