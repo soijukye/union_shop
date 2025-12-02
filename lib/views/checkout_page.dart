@@ -105,6 +105,28 @@ class CheckoutPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: cartModel.items.isEmpty
+                        ? null
+                        : () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Payment processed!')),
+                            );
+                          },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4d2963),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+                    child: const Text('Pay', style: TextStyle(fontSize: 18, letterSpacing: 1)),
+                  ),
+                ),
               ],
             ),
           ),
