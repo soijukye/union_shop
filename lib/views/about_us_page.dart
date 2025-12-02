@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/footer_widget.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
-import '../widgets/dropdown_menu.dart';
+
 
 class AboutUsPage extends StatelessWidget {
   const AboutUsPage({Key? key}) : super(key: key);

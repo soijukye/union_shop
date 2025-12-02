@@ -102,7 +102,8 @@ class TopNavBar extends StatelessWidget {
                         minWidth: 32,
                         minHeight: 32,
                       ),
-                      onPressed: () => SimpleDropdownMenu.show(context, 107),
+                      
+                      onPressed: () => SimpleDropdownMenu.show(context, 120),
                     ),
                   ],
                 ),
