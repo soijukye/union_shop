@@ -3,7 +3,8 @@ import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/theme/app_styles.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 
-import 'package:union_shop/models/cart_model.dart';
+
+import 'package:union_shop/models/cart_item.dart';
 
 class ProductPage extends StatefulWidget {
   final CartModel cartModel;
