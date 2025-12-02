@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
+        // No GlobalKey needed, use fixed value for dropdown position
   }
 
   @override
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   // Navbar
                   Container(
-                    height: 80,
+                    height: 35,
                     color: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                                 height: 18,
                                 child: const Center(
                                   child: Icon(Icons.image_not_supported,
-                                      color: Colors.grey),
+                                    color: Colors.grey),
                                 ),
                               );
                             },
@@ -79,45 +79,32 @@ class HomeScreen extends StatelessWidget {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.search,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
-                                ),
-                                onPressed: placeholderCallbackForButtons,
-                              ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.person_outline,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
-                                ),
-                                onPressed: placeholderCallbackForButtons,
-                              ),
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.shopping_bag_outlined,
-                                  size: 18,
-                                  color: Colors.grey,
-                                ),
-                                padding: const EdgeInsets.all(8),
-                                constraints: const BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
-                                ),
-                                onPressed: placeholderCallbackForButtons,
-                              ),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.search,
+                        size: 18,
+                        color: Colors.grey,
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      constraints: const BoxConstraints(
+                        minWidth: 32,
+                        minHeight: 32,
+                      ),
+                      onPressed: placeholderCallbackForButtons,
+                    ),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.shopping_bag_outlined,
+                        size: 18,
+                        color: Colors.grey,
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      constraints: const BoxConstraints(
+                        minWidth: 32,
+                        minHeight: 32,
+                      ),
+                      onPressed: placeholderCallbackForButtons,
+                    ),
                               IconButton(
                                 icon: const Icon(
                                   Icons.menu,
@@ -129,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                                   minWidth: 32,
                                   minHeight: 32,
                                 ),
-                                onPressed: () => SimpleDropdownMenu.show(context),
+                                onPressed: () => SimpleDropdownMenu.show(context, 107),
                               ),
                             ],
                           ),

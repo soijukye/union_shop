@@ -21,11 +21,9 @@ class SimpleDropdownMenu extends StatelessWidget {
     ),
   ];
 
-  static void show(BuildContext context) {
+  static void show(BuildContext context, double topOffset) {
     final overlay = Overlay.of(context);
     OverlayEntry? entry;
-    // Use a fixed header height for dropdown position
-    const double headerHeight = 100;
     entry = OverlayEntry(
       builder: (context) => Stack(
         children: [
@@ -37,7 +35,7 @@ class SimpleDropdownMenu extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: headerHeight,
+            top: topOffset,
             left: 0,
             right: 0,
             child: Material(
