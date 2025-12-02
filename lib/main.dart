@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/views/about_us_page.dart';
 import 'package:union_shop/views/collections_page.dart';
 import 'package:union_shop/views/product_page.dart';
+import 'package:union_shop/views/product_details_page.dart';
 import 'package:union_shop/views/home_screen.dart';
 import 'package:union_shop/views/cart_page.dart';
 import 'package:union_shop/views/checkout_page.dart';
@@ -32,12 +33,31 @@ class _UnionShopAppState extends State<UnionShopApp> {
       ),
       home: HomeScreen(cartModel: cartModel),
       initialRoute: '/',
-      routes: {
-        '/product': (context) => ProductPage(cartModel: cartModel),
-        '/about': (context) => AboutUsPage(cartModel: cartModel),
-        '/cart': (context) => CartPage(cartModel: cartModel),
-        '/checkout': (context) => CheckoutPage(cartModel: cartModel),
-        '/collections': (context) => CollectionsPage(cartModel: cartModel),
+      onGenerateRoute: (settings) {
+        if (settings.name == '/product') {
+          final args = settings.arguments as Map<String, dynamic>?;
+          if (args != null) {
+            return MaterialPageRoute(
+              builder: (context) => ProductDetailsPage(product: args),
+            );
+          } else {
+            return MaterialPageRoute(
+              builder: (context) => ProductPage(cartModel: cartModel),
+            );
+          }
+        }
+        final routes = <String, WidgetBuilder>{
+          '/about': (context) => AboutUsPage(cartModel: cartModel),
+          '/cart': (context) => CartPage(cartModel: cartModel),
+          '/checkout': (context) => CheckoutPage(cartModel: cartModel),
+          '/collections': (context) => CollectionsPage(cartModel: cartModel),
+          '/': (context) => HomeScreen(cartModel: cartModel),
+        };
+        final builder = routes[settings.name];
+        if (builder != null) {
+          return MaterialPageRoute(builder: builder, settings: settings);
+        }
+        return null;
       },
     );
   }

@@ -23,6 +23,44 @@ class _ProductPageState extends State<ProductPage> {
   final List<String> colors = ['Red', 'Blue', 'Green'];
   final List<String> sizes = ['S', 'M', 'L', 'XL'];
 
+  final List<Map<String, dynamic>> products = [
+    {
+      'title': 'Classic Sweatshirt',
+      'price': 25.00,
+      'priceStr': '\u00a325.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
+      'description': 'A classic, cozy sweatshirt for everyday comfort. Soft, warm, and perfect for layering.',
+    },
+    {
+      'title': 'Portsmouth Hoodie',
+      'price': 40.00,
+      'priceStr': '\u00a340.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
+      'description': 'Show your Portsmouth pride with this comfy hoodie. Great for chilly days and casual wear.',
+    },
+    {
+      'title': 'City Magnet',
+      'price': 5.00,
+      'priceStr': '\u00a35.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+      'description': 'A fun Portsmouth city magnet for your fridge or collection.',
+    },
+    {
+      'title': 'Personalised Mug',
+      'price': 12.00,
+      'priceStr': '\u00a312.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
+      'description': 'Enjoy your favorite drink in a personalized mug. Makes a great gift!',
+    },
+    {
+      'title': 'Tote Bag',
+      'price': 8.00,
+      'priceStr': '\u00a38.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Tote_Bag_1024x1024@2x.png?v=1759827236',
+      'description': 'A sturdy tote bag for shopping, books, or everyday use.',
+    },
+  ];
+
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
@@ -64,6 +102,7 @@ class _ProductPageState extends State<ProductPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // Essential T-shirt section (unchanged)
                   Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(24),
@@ -238,12 +277,133 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
+                  // Other products detail sections
+                  for (final product in products)
+                    Container(
+                      color: Colors.white,
+                      margin: const EdgeInsets.only(top: 32),
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 300,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.grey[200],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                product['imageUrl'],
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Container(
+                                    color: Colors.grey[300],
+                                    child: const Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.image_not_supported,
+                                            size: 64,
+                                            color: Colors.grey,
+                                          ),
+                                          SizedBox(height: 8),
+                                          Text(
+                                            'Image unavailable',
+                                            style: TextStyle(color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            product['title'],
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            children: [
+                              Text(
+                                product['priceStr'],
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 48,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                final cartItem = CartItem(
+                                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  productName: product['title'],
+                                  imageUrl: product['imageUrl'],
+                                  size: '',
+                                  price: product['price'],
+                                  quantity: 1,
+                                );
+                                widget.cartModel.addItem(cartItem);
+                                setState(() {});
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('${product['title']} added to cart!')),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF4d2963),
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              child: const Text(
+                                'Add to Cart',
+                                style: TextStyle(fontSize: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          const Text(
+                            'Description',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            product['description'],
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              height: 1.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   const FooterWidget()
                 ],
               ),
             ),
           ),
-          
         ],
       ),
     );
