@@ -44,12 +44,68 @@ class CheckoutPage extends StatelessWidget {
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
           ),
           const SizedBox(height: 24),
-          const Padding(
-            padding: EdgeInsets.all(24.0),
-            child: Text(
-              'This is a dummy checkout page.\n\nYou can implement payment and order summary here.',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
-              textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Order Summary',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+                ),
+                const SizedBox(height: 16),
+                if (cartModel.items.isEmpty)
+                  const Text('Your cart is empty.', style: TextStyle(color: Colors.grey)),
+                for (final item in cartModel.items)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                              image: NetworkImage(item.imageUrl),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                item.productName,
+                                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                              ),
+                              Text('Size: ${item.size}', style: const TextStyle(color: Colors.grey)),
+                              Text('Qty: ${item.quantity}', style: const TextStyle(color: Colors.grey)),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          '\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+                          style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
+                        ),
+                      ],
+                    ),
+                  ),
+                const Divider(height: 32),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Total', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text(
+                      '\u00a3${cartModel.totalPrice.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           const Spacer(),
