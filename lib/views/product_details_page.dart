@@ -13,6 +13,30 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+      bool get isClothing {
+        // List of clothing product titles
+        const clothingTitles = [
+          'Essential T-shirt',
+          'Classic Sweatshirt',
+          'Portsmouth Hoodie',
+        ];
+        final title = widget.product['title'] ?? '';
+        return clothingTitles.contains(title);
+      }
+    @override
+    void initState() {
+      super.initState();
+      final cartModel = widget.product['cartModel'];
+      if (cartModel != null) {
+        cartModel.feedbackCallback = (String productName) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('$productName added to cart!')),
+            );
+          }
+        };
+      }
+    }
   String? selectedColor;
   String? selectedSize;
   int quantity = 1;
@@ -163,53 +187,54 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             ],
                           ),
                         const SizedBox(height: 16),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: DropdownButtonFormField<String>(
-                                value: selectedColor,
-                                items: colors.map((color) {
-                                  return DropdownMenuItem(
-                                    value: color,
-                                    child: Text(color),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedColor = value;
-                                  });
-                                },
-                                decoration: const InputDecoration(
-                                  labelText: 'Color',
-                                  border: OutlineInputBorder(),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        if (isClothing)
+                          Row(
+                            children: [
+                              Expanded(
+                                child: DropdownButtonFormField<String>(
+                                  value: selectedColor,
+                                  items: colors.map((color) {
+                                    return DropdownMenuItem(
+                                      value: color,
+                                      child: Text(color),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedColor = value;
+                                    });
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'Color',
+                                    border: OutlineInputBorder(),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: DropdownButtonFormField<String>(
-                                value: selectedSize,
-                                items: sizes.map((size) {
-                                  return DropdownMenuItem(
-                                    value: size,
-                                    child: Text(size),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedSize = value;
-                                  });
-                                },
-                                decoration: const InputDecoration(
-                                  labelText: 'Size',
-                                  border: OutlineInputBorder(),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: DropdownButtonFormField<String>(
+                                  value: selectedSize,
+                                  items: sizes.map((size) {
+                                    return DropdownMenuItem(
+                                      value: size,
+                                      child: Text(size),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedSize = value;
+                                    });
+                                  },
+                                  decoration: const InputDecoration(
+                                    labelText: 'Size',
+                                    border: OutlineInputBorder(),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
                         const SizedBox(height: 16),
                         TextFormField(
                           keyboardType: TextInputType.number,
@@ -247,9 +272,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                           price: double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
                                           quantity: quantity,
                                         ),
+                                        productName: title,
                                       );
                                       ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(content: Text('Added to cart!')),
+                                        SnackBar(content: Text('$title added to cart!')),
                                       );
                                     }
                                   }

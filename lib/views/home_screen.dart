@@ -3,8 +3,16 @@ import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/widgets/product_card.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/models/cart_model.dart';
+import 'package:union_shop/models/cart_item.dart';
 
 class HomeScreen extends StatelessWidget {
+    void setupCartFeedback(BuildContext context) {
+      cartModel.feedbackCallback = (String productName) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('$productName added to cart!')),
+        );
+      };
+    }
   final CartModel cartModel;
   const HomeScreen({super.key, required this.cartModel});
 
@@ -26,6 +34,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    setupCartFeedback(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -115,15 +124,28 @@ class HomeScreen extends StatelessWidget {
                       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
-                      children: const [
-                        ProductCard(
-                          title: 'Essential T-shirt',
-                          price: '\u00a310.00',
-                          showStrikethrough: true,
-                          newPrice: '\u00a36.99',
-                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
-                        ),
-                      ],
+                      children: [
+                          ProductCard(
+                            title: 'Essential T-shirt',
+                            price: '\u00a310.00',
+                            showStrikethrough: true,
+                            newPrice: '\u00a36.99',
+                            imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                            onAddToCart: () {
+                              cartModel.addItem(
+                                CartItem(
+                                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  productName: 'Essential T-shirt',
+                                  imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                                  size: '',
+                                  price: 6.99,
+                                  quantity: 1,
+                                ),
+                                productName: 'Essential T-shirt',
+                              );
+                            },
+                          ),
+                        ],
                     ),
                     const SizedBox(height: 48),
                     const Text(
@@ -141,28 +163,80 @@ class HomeScreen extends StatelessWidget {
                       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
-                      children: const [
-                        ProductCard(
-                          title: 'Classic Sweatshirt',
-                          price: '\u00a325.00',
-                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
-                        ),
-                        ProductCard(
-                          title: 'Portsmouth Hoodie',
-                          price: '\u00a340.00',
-                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
-                        ),
-                        ProductCard(
-                          title: 'City Magnet',
-                          price: '\u00a35.00',
-                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        ProductCard(
-                          title: 'Personalised Mug',
-                          price: '\u00a312.00',
-                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
-                        ),
-                      ],
+                      children: [
+                          ProductCard(
+                            title: 'Classic Sweatshirt',
+                            price: '\u00a325.00',
+                            imageUrl: 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
+                            onAddToCart: () {
+                              cartModel.addItem(
+                                CartItem(
+                                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  productName: 'Classic Sweatshirt',
+                                  imageUrl: 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
+                                  size: '',
+                                  price: 25.00,
+                                  quantity: 1,
+                                ),
+                                productName: 'Classic Sweatshirt',
+                              );
+                            },
+                          ),
+                          ProductCard(
+                            title: 'Portsmouth Hoodie',
+                            price: '\u00a340.00',
+                            imageUrl: 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
+                            onAddToCart: () {
+                              cartModel.addItem(
+                                CartItem(
+                                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  productName: 'Portsmouth Hoodie',
+                                  imageUrl: 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
+                                  size: '',
+                                  price: 40.00,
+                                  quantity: 1,
+                                ),
+                                productName: 'Portsmouth Hoodie',
+                              );
+                            },
+                          ),
+                          ProductCard(
+                            title: 'City Magnet',
+                            price: '\u00a35.00',
+                            imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                            onAddToCart: () {
+                              cartModel.addItem(
+                                CartItem(
+                                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  productName: 'City Magnet',
+                                  imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                                  size: '',
+                                  price: 5.00,
+                                  quantity: 1,
+                                ),
+                                productName: 'City Magnet',
+                              );
+                            },
+                          ),
+                          ProductCard(
+                            title: 'Personalised Mug',
+                            price: '\u00a312.00',
+                            imageUrl: 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
+                            onAddToCart: () {
+                              cartModel.addItem(
+                                CartItem(
+                                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  productName: 'Personalised Mug',
+                                  imageUrl: 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
+                                  size: '',
+                                  price: 12.00,
+                                  quantity: 1,
+                                ),
+                                productName: 'Personalised Mug',
+                              );
+                            },
+                          ),
+                        ],
                     ),
                     const SizedBox(height: 80),
                   ],

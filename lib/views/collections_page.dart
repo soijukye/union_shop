@@ -3,6 +3,7 @@ import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/models/cart_model.dart';
 import 'package:union_shop/widgets/product_card.dart';
+import 'package:union_shop/models/cart_item.dart';
 
 class CollectionsPage extends StatefulWidget {
   final CartModel cartModel;
@@ -13,6 +14,17 @@ class CollectionsPage extends StatefulWidget {
 }
 
 class _CollectionsPageState extends State<CollectionsPage> {
+    @override
+    void initState() {
+      super.initState();
+      widget.cartModel.feedbackCallback = (String productName) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('$productName added to cart!')),
+          );
+        }
+      };
+    }
   String filter = 'all';
 
   void navigateToHome(BuildContext context) {
@@ -152,6 +164,21 @@ class _CollectionsPageState extends State<CollectionsPage> {
                   showStrikethrough: product['showStrikethrough'] ?? false,
                   newPrice: product['newPrice'],
                   imageUrl: product['imageUrl'],
+                  onAddToCart: () {
+                    widget.cartModel.addItem(
+                      // You may want to create a CartItem here with correct fields
+                      // For demo, just use title and imageUrl
+                      CartItem(
+                        id: DateTime.now().millisecondsSinceEpoch.toString(),
+                        productName: product['title'],
+                        imageUrl: product['imageUrl'],
+                        size: '',
+                        price: double.tryParse((product['newPrice'] ?? product['price']).replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                        quantity: 1,
+                      ),
+                      productName: product['title'],
+                    );
+                  },
                 )).toList(),
               ),
             ),

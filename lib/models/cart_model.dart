@@ -1,17 +1,24 @@
 import 'cart_item.dart';
 
+typedef CartFeedbackCallback = void Function(String message);
+
 class CartModel {
   final List<CartItem> _items = [];
+  CartFeedbackCallback? feedbackCallback;
 
   List<CartItem> get items => List.unmodifiable(_items);
 
-  void addItem(CartItem item) {
+  void addItem(CartItem item, {String? productName}) {
     // Check if same product and size exists
     final existing = _items.indexWhere((e) => e.productName == item.productName && e.size == item.size);
     if (existing != -1) {
       _items[existing].quantity += item.quantity;
     } else {
       _items.add(item);
+    }
+    // Always show feedback if callback is set
+    if (feedbackCallback != null) {
+      feedbackCallback!(productName ?? item.productName);
     }
   }
 
