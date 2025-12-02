@@ -114,8 +114,12 @@ class CheckoutPage extends StatelessWidget {
                     onPressed: cartModel.items.isEmpty
                         ? null
                         : () {
+                            // Only show one SnackBar when payment is processed
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Payment processed!')),
+                              const SnackBar(
+                                content: Text('Payment processed!'),
+                                duration: Duration(seconds: 1),
+                              ),
                             );
                           },
                     style: ElevatedButton.styleFrom(

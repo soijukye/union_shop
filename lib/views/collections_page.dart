@@ -18,13 +18,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
     @override
     void initState() {
       super.initState();
-      widget.cartModel.feedbackCallback = (String productName) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$productName added to cart!')),
-          );
-        }
-      };
+      // feedbackCallback logic removed; CartModel no longer supports it
     }
   String filter = 'all';
 

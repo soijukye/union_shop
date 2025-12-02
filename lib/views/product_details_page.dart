@@ -27,16 +27,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     @override
     void initState() {
       super.initState();
-      final cartModel = widget.product['cartModel'];
-      if (cartModel != null) {
-        cartModel.feedbackCallback = (String productName) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('$productName added to cart!')),
-            );
-          }
-        };
-      }
+      // Removed feedbackCallback SnackBar logic to prevent duplicate SnackBars
     }
   String? selectedColor;
   String? selectedSize;
@@ -285,7 +276,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                         productName: title,
                                       );
                                       ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text('$title added to cart!')),
+                                        SnackBar(
+                                          content: Text('$title added to cart!'),
+                                          duration: const Duration(seconds: 1),
+                                        ),
                                       );
                                     }
                                   }

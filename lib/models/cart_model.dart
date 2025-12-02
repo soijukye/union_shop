@@ -1,10 +1,7 @@
 import 'cart_item.dart';
 
-typedef CartFeedbackCallback = void Function(String message);
-
 class CartModel {
   final List<CartItem> _items = [];
-  CartFeedbackCallback? feedbackCallback;
 
   List<CartItem> get items => List.unmodifiable(_items);
 
@@ -16,10 +13,7 @@ class CartModel {
     } else {
       _items.add(item);
     }
-    // Always show feedback if callback is set
-    if (feedbackCallback != null) {
-      feedbackCallback!(productName ?? item.productName);
-    }
+    // Removed feedbackCallback logic to prevent duplicate SnackBars
   }
 
   void removeItem(CartItem item) {
