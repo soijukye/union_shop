@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/product');
   }
 
-  void placeholderCallbackForButtons() {
-    // No GlobalKey needed, use fixed value for dropdown position
+  void navigateToCollections(BuildContext context) {
+    Navigator.pushNamed(context, '/collections');
   }
 
   void navigateToCart(BuildContext context) {
@@ -37,7 +37,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             TopNavBar(
               onLogoTap: navigateToHome,
-              onSearch: placeholderCallbackForButtons,
+              onSearch: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Search not implemented.')),
+                );
+              },
               onBag: () => navigateToCart(context),
             ),
             // Hero Section
@@ -93,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
+                          onPressed: () => navigateToCollections(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF4d2963),
                             foregroundColor: Colors.white,

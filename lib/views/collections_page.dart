@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/top_navbar.dart';
+import 'package:union_shop/widgets/footer_widget.dart';
+import 'package:union_shop/models/cart_model.dart';
+import 'package:union_shop/widgets/product_card.dart';
+
+class CollectionsPage extends StatelessWidget {
+  final CartModel cartModel;
+  const CollectionsPage({Key? key, required this.cartModel}) : super(key: key);
+
+  void navigateToHome(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          TopNavBar(
+            onLogoTap: (ctx) => navigateToHome(ctx),
+            onSearch: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Search not implemented.')),
+              );
+            },
+            onBag: () {
+              Navigator.pushNamed(context, '/cart');
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8, top: 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          const Text(
+            'Collections',
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
+          ),
+          const SizedBox(height: 24),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: GridView.count(
+                crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
+                crossAxisSpacing: 24,
+                mainAxisSpacing: 24,
+                children: const [
+                  ProductCard(
+                    title: 'Essential T-shirt',
+                    price: '\u00a310.00',
+                    showStrikethrough: true,
+                    newPrice: '\u00a36.99',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                  ),
+                  ProductCard(
+                    title: 'Classic Sweatshirt',
+                    price: '\u00a325.00',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
+                  ),
+                  ProductCard(
+                    title: 'Portsmouth Hoodie',
+                    price: '\u00a340.00',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
+                  ),
+                  ProductCard(
+                    title: 'City Magnet',
+                    price: '\u00a35.00',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                  ),
+                  ProductCard(
+                    title: 'Personalised Mug',
+                    price: '\u00a312.00',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
+                  ),
+                  ProductCard(
+                    title: 'Tote Bag',
+                    price: '\u00a38.00',
+                    imageUrl: 'https://shop.upsu.net/cdn/shop/files/Tote_Bag_1024x1024@2x.png?v=1759827236',
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const FooterWidget(),
+        ],
+      ),
+    );
+  }
+}

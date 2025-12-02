@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/views/about_us_page.dart';
+import 'package:union_shop/views/collections_page.dart';
 import 'package:union_shop/views/product_page.dart';
 import 'package:union_shop/views/home_screen.dart';
 import 'package:union_shop/views/cart_page.dart';
@@ -36,6 +37,7 @@ class _UnionShopAppState extends State<UnionShopApp> {
         '/about': (context) => AboutUsPage(cartModel: cartModel),
         '/cart': (context) => CartPage(cartModel: cartModel),
         '/checkout': (context) => CheckoutPage(cartModel: cartModel),
+        '/collections': (context) => CollectionsPage(cartModel: cartModel),
       },
     );
   }
