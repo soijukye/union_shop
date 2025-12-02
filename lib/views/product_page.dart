@@ -221,7 +221,7 @@ class _ProductPageState extends State<ProductPage> {
                           children: [
                             Expanded(
                               child: DropdownButtonFormField<String>(
-                                value: selectedColor,
+                                initialValue: selectedColor,
                                 items: colors.map((color) {
                                   return DropdownMenuItem(
                                     value: color,
@@ -241,7 +241,7 @@ class _ProductPageState extends State<ProductPage> {
                             const SizedBox(width: 16),
                             Expanded(
                               child: DropdownButtonFormField<String>(
-                                value: selectedSize,
+                                initialValue: selectedSize,
                                 items: sizes.map((size) {
                                   return DropdownMenuItem(
                                     value: size,

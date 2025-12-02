@@ -299,7 +299,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 80), // Space for footer if content is short
+                          const SizedBox(height: 80), // Space for footer if content is short
                         ],
                       ),
                     ),
