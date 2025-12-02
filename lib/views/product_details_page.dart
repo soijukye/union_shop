@@ -5,6 +5,7 @@ import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/models/cart_item.dart';
 
 class ProductDetailsPage extends StatefulWidget {
+  // TEMPORARY NOTE: This is the ProductDetailsPage (product details)
   final Map<String, dynamic> product;
   const ProductDetailsPage({Key? key, required this.product}) : super(key: key);
 
@@ -79,6 +80,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // TEMPORARY NOTE: You are on the ProductDetailsPage (product details)
     final cartModel = widget.product['cartModel'];
     // Merge product with defaults for missing fields
     final String title = widget.product['title'] ?? '';
@@ -89,6 +91,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     final String imageUrl = widget.product['imageUrl'] ?? defaults['imageUrl'] ?? '';
     final String description = widget.product['description'] ?? defaults['description'] ?? 'No description available.';
     bool isButtonEnabled = (selectedSize != null && quantity > 0);
+    // Parse oldPrice if on sale
+    double? oldPriceValue;
+    if (showStrikethrough && newPrice != null) {
+      oldPriceValue = double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), ''));
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -269,7 +276,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                           productName: title,
                                           imageUrl: imageUrl,
                                           size: selectedSize ?? '',
-                                          price: double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                                          price: showStrikethrough && newPrice != null
+                                              ? double.tryParse(newPrice.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0
+                                              : double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                                          oldPrice: oldPriceValue,
                                           quantity: quantity,
                                         ),
                                         productName: title,

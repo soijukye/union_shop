@@ -37,8 +37,11 @@ class _UnionShopAppState extends State<UnionShopApp> {
         if (settings.name == '/product') {
           final args = settings.arguments as Map<String, dynamic>?;
           if (args != null) {
+            // Always inject cartModel into the product details page
+            final productArgs = Map<String, dynamic>.from(args);
+            productArgs['cartModel'] = cartModel;
             return MaterialPageRoute(
-              builder: (context) => ProductDetailsPage(product: args),
+              builder: (context) => ProductDetailsPage(product: productArgs),
             );
           } else {
             return MaterialPageRoute(

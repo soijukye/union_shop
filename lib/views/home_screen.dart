@@ -6,6 +6,7 @@ import 'package:union_shop/models/cart_model.dart';
 import 'package:union_shop/models/cart_item.dart';
 
 class HomeScreen extends StatelessWidget {
+      // TEMPORARY NOTE: This is the HomeScreen page
     void setupCartFeedback(BuildContext context) {
       cartModel.feedbackCallback = (String productName) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -34,6 +35,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TEMPORARY NOTE: You are on the HomeScreen page
     setupCartFeedback(context);
     return Scaffold(
       backgroundColor: Colors.white,

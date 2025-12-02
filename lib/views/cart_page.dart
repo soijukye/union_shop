@@ -9,6 +9,7 @@ import 'package:union_shop/models/cart_model.dart';
 import 'package:union_shop/models/cart_item.dart';
 
 class CartPage extends StatefulWidget {
+	// TEMPORARY NOTE: This is the CartPage
 	final CartModel cartModel;
 	const CartPage({Key? key, required this.cartModel}) : super(key: key);
 
@@ -20,6 +21,7 @@ class _CartPageState extends State<CartPage> {
 
 	@override
 	Widget build(BuildContext context) {
+			// TEMPORARY NOTE: You are on the CartPage
 		return Scaffold(
 			backgroundColor: Colors.white,
 			body: LayoutBuilder(
@@ -125,14 +127,37 @@ class _CartPageState extends State<CartPage> {
 																				Column(
 																					crossAxisAlignment: CrossAxisAlignment.end,
 																					children: [
-																						Text(
-																							'\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
-																							style: const TextStyle(
-																								fontSize: 16,
-																								fontWeight: FontWeight.bold,
-																								color: Color(0xFF4d2963),
-																							),
-																						),
+																																									if (item.oldPrice != null)
+																																										Row(
+																																											children: [
+																																												Text(
+																																													'\u00a3${(item.oldPrice! * item.quantity).toStringAsFixed(2)}',
+																																													style: const TextStyle(
+																																														fontSize: 15,
+																																														color: Colors.grey,
+																																														decoration: TextDecoration.lineThrough,
+																																													),
+																																												),
+																																												const SizedBox(width: 8),
+																																												Text(
+																																													'\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+																																													style: const TextStyle(
+																																														fontSize: 16,
+																																														fontWeight: FontWeight.bold,
+																																														color: Color(0xFF4d2963),
+																																													),
+																																												),
+																																											],
+																																										)
+																																									else
+																																										Text(
+																																											'\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+																																											style: const TextStyle(
+																																												fontSize: 16,
+																																												fontWeight: FontWeight.bold,
+																																												color: Color(0xFF4d2963),
+																																											),
+																																										),
 																						const SizedBox(height: 8),
 																						Row(
 																							children: [
