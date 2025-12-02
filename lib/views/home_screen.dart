@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/widgets/product_card.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
-
-
 import 'package:union_shop/models/cart_model.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,7 +26,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -50,7 +47,6 @@ class HomeScreen extends StatelessWidget {
               width: double.infinity,
               child: Stack(
                 children: [
-                  // Background image
                   Positioned.fill(
                     child: Container(
                       decoration: const BoxDecoration(
@@ -68,16 +64,14 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Content overlay
                   Positioned(
-                    left: 24,
-                    right: 24,
-                    top: 80,
+                    left: 40,
+                    bottom: 40,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'BIG SALE NOW ON!',
+                          'Welcome to the Union Shop',
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -86,28 +80,18 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16),
-                        const Text(
-                          "Save over 20% on our essential range of products. Don't miss out on these limited-time offers available while stocks last!",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            height: 1.5,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 32),
-                        ElevatedButton(
-                          onPressed: () => navigateToCollections(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4d2963),
-                            foregroundColor: Colors.white,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
+                        SizedBox(
+                          height: 48,
+                          child: ElevatedButton(
+                            onPressed: () => navigateToCollections(context),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF4d2963),
+                              foregroundColor: Colors.white,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                              ),
                             ),
-                          ),
-                          child: const Text(
-                            'BROWSE COLLECTION',
-                            style: TextStyle(fontSize: 14, letterSpacing: 1),
+                            child: const Text('Shop Collections'),
                           ),
                         ),
                       ],
@@ -116,27 +100,19 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+            // Main content
             Container(
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(40.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    // Essentials section
-                    const Text(
-                      'ESSENTIALS SECTION',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                    const SizedBox(height: 48),
+                    // Featured Product
                     GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount:
-                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
                       children: const [
@@ -145,13 +121,11 @@ class HomeScreen extends StatelessWidget {
                           price: '\u00a310.00',
                           showStrikethrough: true,
                           newPrice: '\u00a36.99',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
                         ),
                       ],
                     ),
                     const SizedBox(height: 48),
-                    // Products Section
                     const Text(
                       'PRODUCTS SECTION',
                       style: TextStyle(
@@ -164,8 +138,7 @@ class HomeScreen extends StatelessWidget {
                     GridView.count(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount:
-                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
                       children: const [

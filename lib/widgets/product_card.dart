@@ -9,6 +9,7 @@ class ProductCard extends StatelessWidget {
   final String imageUrl;
   final bool showStrikethrough;
   final String? newPrice;
+  final VoidCallback? onAddToCart;
 
   const ProductCard({
     super.key,
@@ -17,6 +18,7 @@ class ProductCard extends StatelessWidget {
     required this.imageUrl,
     this.showStrikethrough = false,
     this.newPrice,
+    this.onAddToCart,
   });
 
   @override
@@ -90,6 +92,23 @@ class ProductCard extends StatelessWidget {
                       style: const TextStyle(fontSize: 13, color: Colors.grey),
                     ),
               const SizedBox(height: 8),
+              if (onAddToCart != null)
+                SizedBox(
+                  width: double.infinity,
+                  height: 32,
+                  child: ElevatedButton(
+                    onPressed: onAddToCart,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4d2963),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 0),
+                    ),
+                    child: const Text('Add to Cart', style: TextStyle(fontSize: 13, color: Colors.white)),
+                  ),
+                ),
             ],
           ),
         ],

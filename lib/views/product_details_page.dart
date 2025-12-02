@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/theme/app_styles.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
+import 'package:union_shop/models/cart_item.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   final Map<String, dynamic> product;
@@ -45,6 +46,7 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartModel = product['cartModel'];
     String? selectedColor;
     String? selectedSize;
     int quantity = 1;
@@ -218,7 +220,23 @@ class ProductDetailsPage extends StatelessWidget {
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: () {}, // Add to cart logic can be added here
+                            onPressed: () {
+                              if (cartModel != null) {
+                                cartModel.addItem(
+                                  CartItem(
+                                    id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                    productName: title,
+                                    imageUrl: imageUrl,
+                                    size: selectedSize ?? '',
+                                    price: double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                                    quantity: quantity,
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Added to cart!')),
+                                );
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF4d2963),
                               foregroundColor: Colors.white,
