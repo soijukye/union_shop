@@ -16,7 +16,11 @@ class HomeScreen extends StatelessWidget {
   }
 
   void placeholderCallbackForButtons() {
-        // No GlobalKey needed, use fixed value for dropdown position
+    // No GlobalKey needed, use fixed value for dropdown position
+  }
+
+  void navigateToCart(BuildContext context) {
+    Navigator.pushNamed(context, '/cart');
   }
 
   @override
@@ -24,187 +28,174 @@ class HomeScreen extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: mediaQuery.size.height,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TopNavBar(
+              onLogoTap: navigateToHome,
+              onSearch: placeholderCallbackForButtons,
+              onBag: () => navigateToCart(context),
+            ),
+            // Hero Section
+            SizedBox(
+              height: 400,
+              width: double.infinity,
+              child: Stack(
                 children: [
-                  // Use reusable TopNavBar widget
-                  TopNavBar(
-                    onLogoTap: navigateToHome,
-                    onSearch: placeholderCallbackForButtons,
-                    onBag: placeholderCallbackForButtons,
+                  // Background image
+                  Positioned.fill(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.7),
+                        ),
+                      ),
+                    ),
                   ),
-
-                  // Hero Section
-                  SizedBox(
-                    height: 400,
-                    width: double.infinity,
-                    child: Stack(
+                  // Content overlay
+                  Positioned(
+                    left: 24,
+                    right: 24,
+                    top: 80,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // Background image
-                        Positioned.fill(
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-                                ),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.7),
-                              ),
-                            ),
+                        const Text(
+                          'BIG SALE NOW ON!',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            height: 1.2,
                           ),
                         ),
-                        // Content overlay
-                        Positioned(
-                          left: 24,
-                          right: 24,
-                          top: 80,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'BIG SALE NOW ON!',
-                                style: TextStyle(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  height: 1.2,
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              const Text(
-                                "Save over 20% on our essential range of products. Don't miss out on these limited-time offers available while stocks last!",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 32),
-                              ElevatedButton(
-                                onPressed: placeholderCallbackForButtons,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF4d2963),
-                                  foregroundColor: Colors.white,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ),
-                                child: const Text(
-                                  'BROWSE COLLECTION',
-                                  style: TextStyle(fontSize: 14, letterSpacing: 1),
-                                ),
-                              ),
-                            ],
+                        const SizedBox(height: 16),
+                        const Text(
+                          "Save over 20% on our essential range of products. Don't miss out on these limited-time offers available while stocks last!",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            height: 1.5,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 32),
+                        ElevatedButton(
+                          onPressed: placeholderCallbackForButtons,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF4d2963),
+                            foregroundColor: Colors.white,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                          ),
+                          child: const Text(
+                            'BROWSE COLLECTION',
+                            style: TextStyle(fontSize: 14, letterSpacing: 1),
                           ),
                         ),
                       ],
                     ),
                   ),
-
-                  Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Column(
-                        children: [
-                          // Essentials section
-                          const Text(
-                            'ESSENTIALS SECTION',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                          const SizedBox(height: 48),
-                          GridView.count(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            crossAxisCount:
-                                MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                            crossAxisSpacing: 24,
-                            mainAxisSpacing: 48,
-                            children: const [
-                              ProductCard(
-                                title: 'Essential T-shirt',
-                                price: '\u00a310.00',
-                                showStrikethrough: true,
-                                newPrice: '\u00a36.99',
-                                imageUrl:
-                                    'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 48),
-                          // Products Section
-                          const Text(
-                            'PRODUCTS SECTION',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                          const SizedBox(height: 48),
-                          GridView.count(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            crossAxisCount:
-                                MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                            crossAxisSpacing: 24,
-                            mainAxisSpacing: 48,
-                            children: const [
-                              ProductCard(
-                                title: 'Placeholder Product 1',
-                                price: '\u00a310.00',
-                                imageUrl:
-                                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                              ),
-                              ProductCard(
-                                title: 'Placeholder Product 2',
-                                price: '\u00a315.00',
-                                imageUrl:
-                                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                              ),
-                              ProductCard(
-                                title: 'Placeholder Product 3',
-                                price: '\u00a320.00',
-                                imageUrl:
-                                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                              ),
-                              ProductCard(
-                                title: 'Placeholder Product 4',
-                                price: '\u00a325.00',
-                                imageUrl:
-                                    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 80), // Space for footer if content is short
-                        ],
-                      ),
-                    ),
-                  ),
-                  const FooterWidget()
                 ],
               ),
             ),
-          ),
-          
-        ],
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  children: [
+                    // Essentials section
+                    const Text(
+                      'ESSENTIALS SECTION',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 48,
+                      children: const [
+                        ProductCard(
+                          title: 'Essential T-shirt',
+                          price: '\u00a310.00',
+                          showStrikethrough: true,
+                          newPrice: '\u00a36.99',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 48),
+                    // Products Section
+                    const Text(
+                      'PRODUCTS SECTION',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    const SizedBox(height: 48),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount:
+                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 48,
+                      children: const [
+                        ProductCard(
+                          title: 'Placeholder Product 1',
+                          price: '\u00a310.00',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        ),
+                        ProductCard(
+                          title: 'Placeholder Product 2',
+                          price: '\u00a315.00',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        ),
+                        ProductCard(
+                          title: 'Placeholder Product 3',
+                          price: '\u00a320.00',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        ),
+                        ProductCard(
+                          title: 'Placeholder Product 4',
+                          price: '\u00a325.00',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 80),
+                  ],
+                ),
+              ),
+            ),
+            const FooterWidget(),
+          ],
+        ),
       ),
     );
   }
