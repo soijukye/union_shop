@@ -1,18 +1,19 @@
-# Project Requirements: union_shop
+# Requirements: union_shop
 
 ## 1. FooterWidget
 
 ### Description
-The footer should only appear at the bottom of the page when the user has scrolled to the end of the content, ensuring it does not overlap or obstruct other elements.
+The footer should appear at the bottom of the page, using a layout that keeps it at the bottom of the screen even when the content is short. This is achieved using Flutter's LayoutBuilder, ConstrainedBox, and Expanded widgets. The footer must not overlap or obstruct other elements.
 
 ### User Stories
 - **As a user**, I want the footer to be visible only when I reach the end of the page so that it does not block any content while browsing.
 - **As a developer**, I want the footer to be consistently placed across all pages for a professional look.
 
 ### Acceptance Criteria
-- The footer is only visible at the bottom of the page after scrolling to the end.
+- The footer is always visible at the bottom of the About and Cart pages, even when the content does not fill the viewport.
 - The footer does not overlap with page content.
-- The footer is present on all main pages.
+- The footer is present on all main pages where required.
+- The layout uses LayoutBuilder, ConstrainedBox, and Expanded to ensure correct footer placement.
 
 ---
 

@@ -143,7 +143,7 @@ The table below is an almost comprehensive list of features present on the websi
 | Static Homepage | Homepage layout and widgets with static content (hardcoded data* acceptable, mobile view focus) | 5% | [Homepage](https://shop.upsu.net/) |
 | Static Navbar | Top navigation bar with menu (links do not have to work at this stage, mobile view focus) | 5% | [Homepage](https://shop.upsu.net/) |
 | About Us Page | Static about us page* with company information (separate page from homepage) | 5% | [About Us](https://shop.upsu.net/pages/about-us) |
-| Footer | Footer with dummy* links and information present in at least one page | 4% | [Homepage](https://shop.upsu.net/) |
+| Footer | Footer with dummy* links and information present at the bottom of the About and Cart pages, using a layout that keeps it at the bottom even when content is short | 4% | [Homepage](https://shop.upsu.net/) |
 | Dummy* Collections Page | Page displaying various collections of products (hardcoded data* acceptable) | 5% | [Collections](https://shop.upsu.net/collections/) |
 | Dummy* Collection Page | Page displaying products within one collection including dropdowns and filters (hardcoded data* acceptable, widgets do not have to function) | 5% | [Collection Example](https://shop.upsu.net/collections/autumn-favourites) |
 | Dummy* Product Page | Product page showing details and images with dropdowns, buttons and widgets (hardcoded data* acceptable, widgets do not have to function) | 4% | [Product Example](https://shop.upsu.net/collections/autumn-favourites/products/classic-sweatshirt-1) |
@@ -240,6 +240,10 @@ union_shop/
 ```
 
 Note that this is the initial structure. You are expected to create additional files and directories as needed to complete the coursework. You can also reorganize the project structure as you see fit.
+## Implementation Notes
+
+- The footer is implemented on both the About and Cart pages using a layout that ensures it stays at the bottom of the screen, even when the content does not fill the viewport. This is achieved using `LayoutBuilder`, `ConstrainedBox`, and `Expanded` widgets in Flutter.
+- The layout is consistent across these pages, providing a professional and user-friendly appearance.
 
 ## Help with Coursework
 
