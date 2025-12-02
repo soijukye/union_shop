@@ -8,12 +8,54 @@ class ProductDetailsPage extends StatelessWidget {
   const ProductDetailsPage({Key? key, required this.product}) : super(key: key);
   static final List<String> colors = ['Red', 'Blue', 'Green'];
   static final List<String> sizes = ['S', 'M', 'L', 'XL'];
+  static final Map<String, Map<String, dynamic>> productDefaults = {
+    'Essential T-shirt': {
+      'price': '\u00a310.00',
+      'showStrikethrough': true,
+      'newPrice': '\u00a36.99',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+      'description': "Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe's been waiting for.",
+    },
+    'Classic Sweatshirt': {
+      'price': '\u00a325.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
+      'description': 'A classic, cozy sweatshirt for everyday comfort. Soft, warm, and perfect for layering.',
+    },
+    'Portsmouth Hoodie': {
+      'price': '\u00a340.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
+      'description': 'Show your Portsmouth pride with this comfy hoodie. Great for chilly days and casual wear.',
+    },
+    'City Magnet': {
+      'price': '\u00a35.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+      'description': 'A fun Portsmouth city magnet for your fridge or collection.',
+    },
+    'Personalised Mug': {
+      'price': '\u00a312.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
+      'description': 'Enjoy your favorite drink in a personalized mug. Makes a great gift!',
+    },
+    'Tote Bag': {
+      'price': '\u00a38.00',
+      'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Tote_Bag_1024x1024@2x.png?v=1759827236',
+      'description': 'A sturdy tote bag for shopping, books, or everyday use.',
+    },
+  };
 
   @override
   Widget build(BuildContext context) {
     String? selectedColor;
     String? selectedSize;
     int quantity = 1;
+    // Merge product with defaults for missing fields
+    final String title = product['title'] ?? '';
+    final Map<String, dynamic> defaults = productDefaults[title] ?? {};
+    final String price = product['price'] ?? defaults['price'] ?? '';
+    final bool showStrikethrough = product['showStrikethrough'] ?? defaults['showStrikethrough'] ?? false;
+    final String? newPrice = product['newPrice'] ?? defaults['newPrice'];
+    final String imageUrl = product['imageUrl'] ?? defaults['imageUrl'] ?? '';
+    final String description = product['description'] ?? defaults['description'] ?? 'No description available.';
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -58,7 +100,7 @@ class ProductDetailsPage extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
-                              product['imageUrl'] ?? '',
+                              imageUrl,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) => Container(
                                 color: Colors.grey[300],
@@ -85,7 +127,7 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                          product['title'] ?? '',
+                          title,
                           style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -93,16 +135,16 @@ class ProductDetailsPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        if ((product['showStrikethrough'] ?? false) && product['newPrice'] != null)
+                        if (showStrikethrough && newPrice != null)
                           PriceStyle(
-                            oldPrice: product['price'] ?? '',
-                            newPrice: product['newPrice'] ?? '',
+                            oldPrice: price,
+                            newPrice: newPrice,
                           )
                         else
                           Row(
                             children: [
                               Text(
-                                product['price'] ?? '',
+                                price,
                                 style: const TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
@@ -201,7 +243,7 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          product['description'] ?? 'No description available.',
+                          description,
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.grey,

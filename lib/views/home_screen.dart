@@ -170,28 +170,24 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 48,
                       children: const [
                         ProductCard(
-                          title: 'Placeholder Product 1',
-                          price: '\u00a310.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        ProductCard(
-                          title: 'Placeholder Product 2',
-                          price: '\u00a315.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        ProductCard(
-                          title: 'Placeholder Product 3',
-                          price: '\u00a320.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-                        ),
-                        ProductCard(
-                          title: 'Placeholder Product 4',
+                          title: 'Classic Sweatshirt',
                           price: '\u00a325.00',
-                          imageUrl:
-                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
+                        ),
+                        ProductCard(
+                          title: 'Portsmouth Hoodie',
+                          price: '\u00a340.00',
+                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
+                        ),
+                        ProductCard(
+                          title: 'City Magnet',
+                          price: '\u00a35.00',
+                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                        ),
+                        ProductCard(
+                          title: 'Personalised Mug',
+                          price: '\u00a312.00',
+                          imageUrl: 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
                         ),
                       ],
                     ),
