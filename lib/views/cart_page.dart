@@ -5,9 +5,18 @@ import 'package:union_shop/widgets/footer_widget.dart';
 
 import 'package:union_shop/models/cart_model.dart';
 
-class CartPage extends StatelessWidget {
+
+import 'package:union_shop/models/cart_item.dart';
+
+class CartPage extends StatefulWidget {
 	final CartModel cartModel;
 	const CartPage({Key? key, required this.cartModel}) : super(key: key);
+
+	@override
+	State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
 
 	@override
 	Widget build(BuildContext context) {
@@ -58,102 +67,137 @@ class CartPage extends StatelessWidget {
 														),
 														child: Column(
 															children: [
-																// Dummy cart item
-																Row(
-																	children: [
-																		Container(
-																			width: 64,
-																			height: 64,
-																			decoration: BoxDecoration(
-																				borderRadius: BorderRadius.circular(8),
-																				image: const DecorationImage(
-																					image: NetworkImage('https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236'),
-																					fit: BoxFit.cover,
-																				),
-																			),
-																		),
-																		const SizedBox(width: 24),
-																		Expanded(
-																			child: Column(
-																				crossAxisAlignment: CrossAxisAlignment.start,
-																				children: const [
-																					Text(
-																						'Essential T-shirt',
-																						style: TextStyle(
-																							fontSize: 18,
-																							fontWeight: FontWeight.w600,
-																							color: Colors.black,
+																if (widget.cartModel.items.isEmpty)
+																	const Padding(
+																		padding: EdgeInsets.all(16.0),
+																		child: Text('Your cart is empty.'),
+																	)
+																else ...[
+																	for (final item in widget.cartModel.items) ...[
+																		Row(
+																			children: [
+																				Container(
+																					width: 64,
+																					height: 64,
+																					decoration: BoxDecoration(
+																						borderRadius: BorderRadius.circular(8),
+																						image: DecorationImage(
+																							image: NetworkImage(item.imageUrl),
+																							fit: BoxFit.cover,
 																						),
 																					),
-																					SizedBox(height: 8),
-																					Text(
-																						'Size: M',
-																						style: TextStyle(
-																							fontSize: 14,
-																							color: Colors.grey,
-																						),
-																					),
-																				],
-																			),
-																		),
-																		const SizedBox(width: 24),
-																		Column(
-																			crossAxisAlignment: CrossAxisAlignment.end,
-																			children: const [
-																				Text(
-																					'\u00a36.99',
-																					style: TextStyle(
-																						fontSize: 16,
-																						fontWeight: FontWeight.bold,
-																						color: Color(0xFF4d2963),
+																				),
+																				const SizedBox(width: 24),
+																				Expanded(
+																					child: Column(
+																						crossAxisAlignment: CrossAxisAlignment.start,
+																						children: [
+																							Text(
+																								item.productName,
+																								style: const TextStyle(
+																									fontSize: 18,
+																									fontWeight: FontWeight.w600,
+																									color: Colors.black,
+																								),
+																							),
+																							const SizedBox(height: 8),
+																							Text(
+																								'Size: ${item.size}',
+																								style: const TextStyle(
+																									fontSize: 14,
+																									color: Colors.grey,
+																								),
+																							),
+																						],
 																					),
 																				),
-																				SizedBox(height: 8),
-																				Text(
-																					'Qty: 1',
-																					style: TextStyle(
-																						fontSize: 14,
-																						color: Colors.grey,
-																					),
+																				const SizedBox(width: 24),
+																				Column(
+																					crossAxisAlignment: CrossAxisAlignment.end,
+																					children: [
+																						Text(
+																							'\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+																							style: const TextStyle(
+																								fontSize: 16,
+																								fontWeight: FontWeight.bold,
+																								color: Color(0xFF4d2963),
+																							),
+																						),
+																						const SizedBox(height: 8),
+																						Row(
+																							children: [
+																								IconButton(
+																									icon: const Icon(Icons.remove_circle_outline),
+																									onPressed: () {
+																										setState(() {
+																											widget.cartModel.decreaseQuantity(item);
+																										});
+																									},
+																								),
+																								Text(
+																									'Qty: ${item.quantity}',
+																									style: const TextStyle(
+																										fontSize: 14,
+																										color: Colors.grey,
+																									),
+																								),
+																								IconButton(
+																									icon: const Icon(Icons.add_circle_outline),
+																									onPressed: () {
+																										setState(() {
+																											widget.cartModel.increaseQuantity(item);
+																										});
+																									},
+																								),
+																								IconButton(
+																									icon: const Icon(Icons.delete_outline),
+																									onPressed: () {
+																										setState(() {
+																											widget.cartModel.removeItem(item);
+																										});
+																									},
+																								),
+																							],
+																						),
+																					],
 																				),
 																			],
 																		),
+																		const Divider(height: 32),
 																	],
-																),
-																const Divider(height: 32),
-																// Cart summary
-																Row(
-																	mainAxisAlignment: MainAxisAlignment.spaceBetween,
-																	children: const [
-																		Text(
-																			'Subtotal',
-																			style: TextStyle(fontSize: 16, color: Colors.black),
-																		),
-																		Text(
-																			'\u00a36.99',
-																			style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
-																		),
-																	],
-																),
-																const SizedBox(height: 24),
-																SizedBox(
-																	width: double.infinity,
-																	child: ElevatedButton(
-																		onPressed: () {},
-																		style: ElevatedButton.styleFrom(
-																			backgroundColor: const Color(0xFF4d2963),
-																			foregroundColor: Colors.white,
-																			shape: const RoundedRectangleBorder(
-																				borderRadius: BorderRadius.zero,
+																	Row(
+																		mainAxisAlignment: MainAxisAlignment.spaceBetween,
+																		children: [
+																			const Text(
+																				'Subtotal',
+																				style: TextStyle(fontSize: 16, color: Colors.black),
 																			),
-																			padding: const EdgeInsets.symmetric(vertical: 16),
-																		),
-																		child: const Text(
-																			'CHECKOUT',
-																			style: TextStyle(fontSize: 16, letterSpacing: 1),
+																			Text(
+																				'\u00a3${widget.cartModel.totalPrice.toStringAsFixed(2)}',
+																				style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
+																			),
+																		],
+																	),
+																	const SizedBox(height: 24),
+																	SizedBox(
+																		width: double.infinity,
+																		child: ElevatedButton(
+																			onPressed: widget.cartModel.items.isEmpty ? null : () {},
+																			style: ElevatedButton.styleFrom(
+																				backgroundColor: const Color(0xFF4d2963),
+																				foregroundColor: Colors.white,
+																				shape: const RoundedRectangleBorder(
+																					borderRadius: BorderRadius.zero,
+																				),
+																				padding: const EdgeInsets.symmetric(vertical: 16),
+																			),
+																			child: const Text(
+																				'CHECKOUT',
+																				style: TextStyle(fontSize: 16, letterSpacing: 1),
+																			),
 																		),
 																	),
-																),
+																],
 															],
 														),
 													),
