@@ -89,242 +89,236 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     }
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          TopNavBar(
-            onLogoTap: (ctx) => Navigator.of(ctx).pushNamedAndRemoveUntil('/', (route) => false),
-            onSearch: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Search not implemented.')),
-              );
-            },
-            onBag: () => Navigator.of(context).pushNamed('/cart'),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8, top: 8),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.pop(context),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TopNavBar(
+              onLogoTap: (ctx) => Navigator.of(ctx).pushNamedAndRemoveUntil('/', (route) => false),
+              onSearch: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Search not implemented.')),
+                );
+              },
+              onBag: () => Navigator.of(context).pushNamed('/cart'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 8),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.pop(context),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(24),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    color: Colors.white,
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 300,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.grey[200],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.network(
-                              imageUrl,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) => Container(
-                                color: Colors.grey[300],
-                                child: const Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.image_not_supported,
-                                        size: 64,
-                                        color: Colors.grey,
-                                      ),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        'Image unavailable',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
+                    height: 300,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey[200],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          color: Colors.grey[300],
+                          child: const Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.image_not_supported,
+                                  size: 64,
+                                  color: Colors.grey,
                                 ),
-                              ),
+                                SizedBox(height: 8),
+                                Text(
+                                  'Image unavailable',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        const SizedBox(height: 24),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  if (showStrikethrough && newPrice != null)
+                    PriceStyle(
+                      oldPrice: price,
+                      newPrice: newPrice,
+                    )
+                  else
+                    Row(
+                      children: [
                         Text(
-                          title,
+                          price,
                           style: const TextStyle(
-                            fontSize: 28,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        if (showStrikethrough && newPrice != null)
-                          PriceStyle(
-                            oldPrice: price,
-                            newPrice: newPrice,
-                          )
-                        else
-                          Row(
-                            children: [
-                              Text(
-                                price,
-                                style: const TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        const SizedBox(height: 16),
-                        if (isClothing)
-                          Row(
-                            children: [
-                              Expanded(
-                                child: DropdownButtonFormField<String>(
-                                  value: selectedColor,
-                                  items: colors.map((color) {
-                                    return DropdownMenuItem(
-                                      value: color,
-                                      child: Text(color),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedColor = value;
-                                    });
-                                  },
-                                  decoration: const InputDecoration(
-                                    labelText: 'Color',
-                                    border: OutlineInputBorder(),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: DropdownButtonFormField<String>(
-                                  value: selectedSize,
-                                  items: sizes.map((size) {
-                                    return DropdownMenuItem(
-                                      value: size,
-                                      child: Text(size),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedSize = value;
-                                    });
-                                  },
-                                  decoration: const InputDecoration(
-                                    labelText: 'Size',
-                                    border: OutlineInputBorder(),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        const SizedBox(height: 16),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          initialValue: quantity.toString(),
-                          decoration: const InputDecoration(
-                            labelText: 'Quantity',
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          ),
-                          onChanged: (val) {
-                            final parsed = int.tryParse(val);
-                            setState(() {
-                              if (parsed != null && parsed > 0) {
-                                quantity = parsed;
-                              } else {
-                                quantity = 0;
-                              }
-                            });
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 48,
-                          child: ElevatedButton(
-                            onPressed: isButtonEnabled
-                                ? () {
-                                    if (cartModel != null) {
-                                      cartModel.addItem(
-                                        CartItem(
-                                          id: DateTime.now().millisecondsSinceEpoch.toString(),
-                                          productName: title,
-                                          imageUrl: imageUrl,
-                                          size: selectedSize ?? '',
-                                          price: showStrikethrough && newPrice != null
-                                              ? double.tryParse(newPrice.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0
-                                              : double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
-                                          oldPrice: oldPriceValue,
-                                          quantity: quantity,
-                                        ),
-                                        productName: title,
-                                      );
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('$title added to cart!'),
-                                          duration: const Duration(seconds: 1),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                : null,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: isButtonEnabled ? const Color(0xFF4d2963) : Colors.grey,
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                            ),
-                            child: const Text(
-                              'Add to Cart',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
+                      ],
+                    ),
+                  const SizedBox(height: 16),
+                  if (isClothing)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            value: selectedColor,
+                            items: colors.map((color) {
+                              return DropdownMenuItem(
+                                value: color,
+                                child: Text(color),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedColor = value;
+                              });
+                            },
+                            decoration: const InputDecoration(
+                              labelText: 'Color',
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 24),
-                        const Text(
-                          'Description',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          description,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                            height: 1.5,
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            value: selectedSize,
+                            items: sizes.map((size) {
+                              return DropdownMenuItem(
+                                value: size,
+                                child: Text(size),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedSize = value;
+                              });
+                            },
+                            decoration: const InputDecoration(
+                              labelText: 'Size',
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            ),
                           ),
                         ),
                       ],
+                    ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    initialValue: quantity.toString(),
+                    decoration: const InputDecoration(
+                      labelText: 'Quantity',
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    ),
+                    onChanged: (val) {
+                      final parsed = int.tryParse(val);
+                      setState(() {
+                        if (parsed != null && parsed > 0) {
+                          quantity = parsed;
+                        } else {
+                          quantity = 0;
+                        }
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: isButtonEnabled
+                          ? () {
+                              if (cartModel != null) {
+                                cartModel.addItem(
+                                  CartItem(
+                                    id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                    productName: title,
+                                    imageUrl: imageUrl,
+                                    size: selectedSize ?? '',
+                                    price: showStrikethrough && newPrice != null
+                                        ? double.tryParse(newPrice.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0
+                                        : double.tryParse(price.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0.0,
+                                    oldPrice: oldPriceValue,
+                                    quantity: quantity,
+                                  ),
+                                  productName: title,
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('$title added to cart!'),
+                                    duration: const Duration(seconds: 1),
+                                  ),
+                                );
+                              }
+                            }
+                          : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isButtonEnabled ? const Color(0xFF4d2963) : Colors.grey,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      child: const Text(
+                        'Add to Cart',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Description',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      height: 1.5,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            const FooterWidget(),
+          ],
+        ),
       ),
-      bottomNavigationBar: const FooterWidget(),
     );
   }
 }

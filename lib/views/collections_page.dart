@@ -77,83 +77,86 @@ class _CollectionsPageState extends State<CollectionsPage> {
     // TEMPORARY NOTE: You are on the CollectionsPage
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          TopNavBar(
-            onLogoTap: (ctx) => navigateToHome(ctx),
-            onSearch: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Search not implemented.')),
-              );
-            },
-            onBag: () {
-              Navigator.pushNamed(context, '/cart');
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8, top: 8),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.pop(context),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TopNavBar(
+              onLogoTap: (ctx) => navigateToHome(ctx),
+              onSearch: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Search not implemented.')),
+                );
+              },
+              onBag: () {
+                Navigator.pushNamed(context, '/cart');
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 8),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.pop(context),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          const Text(
-            'Collections',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FilterChip(
-                label: const Text('All'),
-                selected: filter == 'all',
-                onSelected: (_) => setState(() => filter = 'all'),
-                backgroundColor: Colors.grey.shade200,
-                selectedColor: Colors.grey.shade300,
-                checkmarkColor: Colors.black,
-                labelStyle: TextStyle(
-                  color: Colors.black,
+            const SizedBox(height: 24),
+            const Text(
+              'Collections',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FilterChip(
+                  label: const Text('All'),
+                  selected: filter == 'all',
+                  onSelected: (_) => setState(() => filter = 'all'),
+                  backgroundColor: Colors.grey.shade200,
+                  selectedColor: Colors.grey.shade300,
+                  checkmarkColor: Colors.black,
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              FilterChip(
-                label: const Text('Clothes'),
-                selected: filter == 'clothes',
-                onSelected: (_) => setState(() => filter = 'clothes'),
-                backgroundColor: Colors.grey.shade200,
-                selectedColor: Colors.grey.shade300,
-                checkmarkColor: Colors.black,
-                labelStyle: TextStyle(
-                  color: Colors.black,
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: const Text('Clothes'),
+                  selected: filter == 'clothes',
+                  onSelected: (_) => setState(() => filter = 'clothes'),
+                  backgroundColor: Colors.grey.shade200,
+                  selectedColor: Colors.grey.shade300,
+                  checkmarkColor: Colors.black,
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              FilterChip(
-                label: const Text('Souvenirs'),
-                selected: filter == 'souvenirs',
-                onSelected: (_) => setState(() => filter = 'souvenirs'),
-                backgroundColor: Colors.grey.shade200,
-                selectedColor: Colors.grey.shade300,
-                checkmarkColor: Colors.black,
-                labelStyle: TextStyle(
-                  color: Colors.black,
+                const SizedBox(width: 8),
+                FilterChip(
+                  label: const Text('Souvenirs'),
+                  selected: filter == 'souvenirs',
+                  onSelected: (_) => setState(() => filter = 'souvenirs'),
+                  backgroundColor: Colors.grey.shade200,
+                  selectedColor: Colors.grey.shade300,
+                  checkmarkColor: Colors.black,
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Padding(
+              ],
+            ),
+            const SizedBox(height: 16),
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: GridView.count(
                 crossAxisCount: MediaQuery.of(context).size.width > 600 ? 3 : 2,
                 crossAxisSpacing: 24,
                 mainAxisSpacing: 24,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 children: filteredProducts.map((product) => ProductCard(
                   title: product['title'],
                   price: product['price'],
@@ -162,8 +165,6 @@ class _CollectionsPageState extends State<CollectionsPage> {
                   imageUrl: product['imageUrl'],
                   onAddToCart: () {
                     widget.cartModel.addItem(
-                      // You may want to create a CartItem here with correct fields
-                      // For demo, just use title and imageUrl
                       CartItem(
                         id: DateTime.now().millisecondsSinceEpoch.toString(),
                         productName: product['title'],
@@ -178,9 +179,9 @@ class _CollectionsPageState extends State<CollectionsPage> {
                 )).toList(),
               ),
             ),
-          ),
-          const FooterWidget(),
-        ],
+            const FooterWidget(),
+          ],
+        ),
       ),
     );
   }
