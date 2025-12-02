@@ -81,7 +81,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     final String? newPrice = widget.product['newPrice'] ?? defaults['newPrice'];
     final String imageUrl = widget.product['imageUrl'] ?? defaults['imageUrl'] ?? '';
     final String description = widget.product['description'] ?? defaults['description'] ?? 'No description available.';
-    bool isButtonEnabled = (selectedSize != null && quantity > 0);
+    bool isButtonEnabled = isClothing ? (selectedSize != null && quantity > 0) : (quantity > 0);
     // Parse oldPrice if on sale
     double? oldPriceValue;
     if (showStrikethrough && newPrice != null) {
