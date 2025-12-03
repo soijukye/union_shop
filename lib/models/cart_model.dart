@@ -13,7 +13,7 @@ class CartModel {
     } else {
       _items.add(item);
     }
-    // Removed feedbackCallback logic to prevent duplicate SnackBars
+   
   }
 
   void removeItem(CartItem item) {
