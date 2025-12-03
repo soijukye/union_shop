@@ -9,14 +9,14 @@ void main() {
         home: Scaffold(
           body: ProductCard(
             title: 'Test Product',
-            price: '\u00a310.00',
+            price: '£10.00',
             imageUrl: '',
           ),
         ),
       ));
       await tester.pump();
       expect(find.text('Test Product'), findsOneWidget);
-      expect(find.text('\u00a310.00'), findsOneWidget);
+      expect(find.text('£10.00'), findsOneWidget);
     });
   });
 }

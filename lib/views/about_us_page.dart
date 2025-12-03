@@ -19,7 +19,6 @@ class AboutUsPage extends StatelessWidget {
   }
 
   void navigateToSearch(BuildContext context) {
-    // Placeholder: implement search navigation if you have a search page
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Search not implemented.')),
     );
@@ -73,11 +72,11 @@ class AboutUsPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: Column(
+                            child: const Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
-                              children: const [
+                              children: [
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

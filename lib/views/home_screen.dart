@@ -61,6 +61,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
+                          // ignore: deprecated_member_use
                           color: Colors.black.withOpacity(0.7),
                         ),
                       ),
@@ -117,12 +118,12 @@ class HomeScreen extends StatelessWidget {
                       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
-                      children: [
+                      children: const [
                         ProductCard(
                           title: 'Essential T-shirt',
-                          price: '\u00a310.00',
+                          price: '£10.00',
                           showStrikethrough: true,
-                          newPrice: '\u00a36.99',
+                          newPrice: '£6.99',
                           imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
                         ),
                       ],
@@ -143,25 +144,25 @@ class HomeScreen extends StatelessWidget {
                       crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                       crossAxisSpacing: 24,
                       mainAxisSpacing: 48,
-                      children: [
+                      children: const [
                         ProductCard(
                           title: 'Classic Sweatshirt',
-                          price: '\u00a325.00',
+                          price: '£25.00',
                           imageUrl: 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
                         ),
                         ProductCard(
                           title: 'Portsmouth Hoodie',
-                          price: '\u00a340.00',
+                          price: '£40.00',
                           imageUrl: 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
                         ),
                         ProductCard(
                           title: 'City Magnet',
-                          price: '\u00a35.00',
+                          price: '£5.00',
                           imageUrl: 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                         ),
                         ProductCard(
                           title: 'Personalised Mug',
-                          price: '\u00a312.00',
+                          price: '£12.00',
                           imageUrl: 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
                         ),
                       ],

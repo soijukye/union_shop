@@ -91,7 +91,7 @@ class CheckoutPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+                            '£${(item.price * item.quantity).toStringAsFixed(2)}',
                             style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
                           ),
                         ],
@@ -103,7 +103,7 @@ class CheckoutPage extends StatelessWidget {
                     children: [
                       const Text('Total', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       Text(
-                        '\u00a3${cartModel.totalPrice.toStringAsFixed(2)}',
+                        '£${cartModel.totalPrice.toStringAsFixed(2)}',
                         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
                       ),
                     ],
@@ -115,11 +115,11 @@ class CheckoutPage extends StatelessWidget {
                       onPressed: cartModel.items.isEmpty
                           ? null
                           : () {
-                              // Only show one SnackBar when payment is processed
+                            
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text('Payment processed!'),
-                                  duration: Duration(seconds: 1),
+                                  duration: Duration(milliseconds: 500),
                                 ),
                               );
                             },

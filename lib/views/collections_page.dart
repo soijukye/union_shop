@@ -28,39 +28,39 @@ class _CollectionsPageState extends State<CollectionsPage> {
   List<Map<String, dynamic>> get products => [
         {
           'title': 'Essential T-shirt',
-          'price': '\u00a310.00',
+          'price': '£10.00',
           'showStrikethrough': true,
-          'newPrice': '\u00a36.99',
+          'newPrice': '£6.99',
           'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
           'category': 'clothes',
         },
         {
           'title': 'Classic Sweatshirt',
-          'price': '\u00a325.00',
+          'price': '£25.00',
           'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
           'category': 'clothes',
         },
         {
           'title': 'Portsmouth Hoodie',
-          'price': '\u00a340.00',
+          'price': '£40.00',
           'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
           'category': 'clothes',
         },
         {
           'title': 'City Magnet',
-          'price': '\u00a35.00',
+          'price': '£5.00',
           'imageUrl': 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
           'category': 'souvenirs',
         },
         {
           'title': 'Personalised Mug',
-          'price': '\u00a312.00',
+          'price': '£12.00',
           'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
           'category': 'souvenirs',
         },
         {
           'title': 'Tote Bag',
-          'price': '\u00a38.00',
+          'price': '£8.00',
           'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Tote_Bag_1024x1024@2x.png?v=1759827236',
           'category': 'souvenirs',
         },
@@ -117,7 +117,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                   backgroundColor: Colors.grey.shade200,
                   selectedColor: Colors.grey.shade300,
                   checkmarkColor: Colors.black,
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
@@ -129,7 +129,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                   backgroundColor: Colors.grey.shade200,
                   selectedColor: Colors.grey.shade300,
                   checkmarkColor: Colors.black,
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                   ),
                 ),
@@ -141,7 +141,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                   backgroundColor: Colors.grey.shade200,
                   selectedColor: Colors.grey.shade300,
                   checkmarkColor: Colors.black,
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.black,
                   ),
                 ),

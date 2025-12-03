@@ -11,7 +11,7 @@ void main() {
           product: {
             'title': 'Test Product',
             'imageUrl': '',
-            'price': '\u00a310.00',
+            'price': '£10.00',
             'description': 'Test description',
             'category': 'Clothing',
             'sizes': ['S', 'M', 'L'],

@@ -80,6 +80,7 @@ class _CartPageState extends State<CartPage> {
 											borderRadius: BorderRadius.circular(12),
 											boxShadow: [
 												BoxShadow(
+													// ignore: deprecated_member_use
 													color: Colors.grey.withOpacity(0.1),
 													blurRadius: 8,
 													offset: const Offset(0, 2),
@@ -146,7 +147,7 @@ class _CartPageState extends State<CartPage> {
 																			Row(
 																				children: [
 																					Text(
-																						'\u00a3${(item.oldPrice! * item.quantity).toStringAsFixed(2)}',
+																						'£${(item.oldPrice! * item.quantity).toStringAsFixed(2)}',
 																						style: const TextStyle(
 																							fontSize: 15,
 																							color: Colors.grey,
@@ -155,7 +156,7 @@ class _CartPageState extends State<CartPage> {
 																					),
 																					const SizedBox(width: 8),
 																					Text(
-																						'\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+																						'£${(item.price * item.quantity).toStringAsFixed(2)}',
 																						style: const TextStyle(
 																							fontSize: 16,
 																							fontWeight: FontWeight.bold,
@@ -166,7 +167,7 @@ class _CartPageState extends State<CartPage> {
 																			)
 																		else
 																			Text(
-																				'\u00a3${(item.price * item.quantity).toStringAsFixed(2)}',
+																				'£${(item.price * item.quantity).toStringAsFixed(2)}',
 																				style: const TextStyle(
 																					fontSize: 16,
 																					fontWeight: FontWeight.bold,
@@ -223,7 +224,7 @@ class _CartPageState extends State<CartPage> {
 																style: TextStyle(fontSize: 16, color: Colors.black),
 															),
 															Text(
-																'\u00a3${widget.cartModel.totalPrice.toStringAsFixed(2)}',
+																'£${widget.cartModel.totalPrice.toStringAsFixed(2)}',
 																style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF4d2963)),
 															),
 														],

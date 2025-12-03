@@ -36,34 +36,34 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   static final List<String> sizes = ['S', 'M', 'L', 'XL'];
   static final Map<String, Map<String, dynamic>> productDefaults = {
     'Essential T-shirt': {
-      'price': '\u00a310.00',
+      'price': '£10.00',
       'showStrikethrough': true,
-      'newPrice': '\u00a36.99',
+      'newPrice': '£6.99',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
       'description': "Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe's been waiting for.",
     },
     'Classic Sweatshirt': {
-      'price': '\u00a325.00',
+      'price': '£25.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
       'description': 'A classic, cozy sweatshirt for everyday comfort. Soft, warm, and perfect for layering.',
     },
     'Portsmouth Hoodie': {
-      'price': '\u00a340.00',
+      'price': '£40.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
       'description': 'Show your Portsmouth pride with this comfy hoodie. Great for chilly days and casual wear.',
     },
     'City Magnet': {
-      'price': '\u00a35.00',
+      'price': '£5.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
       'description': 'A fun Portsmouth city magnet for your fridge or collection.',
     },
     'Personalised Mug': {
-      'price': '\u00a312.00',
+      'price': '£12.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
       'description': 'Enjoy your favorite drink in a personalized mug. Makes a great gift!',
     },
     'Tote Bag': {
-      'price': '\u00a38.00',
+      'price': '£8.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Tote_Bag_1024x1024@2x.png?v=1759827236',
       'description': 'A sturdy tote bag for shopping, books, or everyday use.',
     },

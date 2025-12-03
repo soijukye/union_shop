@@ -27,35 +27,35 @@ class _ProductPageState extends State<ProductPage> {
     {
       'title': 'Classic Sweatshirt',
       'price': 25.00,
-      'priceStr': '\u00a325.00',
+      'priceStr': '£25.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Classic_Sweatshirt_1024x1024@2x.png?v=1759827236',
       'description': 'A classic, cozy sweatshirt for everyday comfort. Soft, warm, and perfect for layering.',
     },
     {
       'title': 'Portsmouth Hoodie',
       'price': 40.00,
-      'priceStr': '\u00a340.00',
+      'priceStr': '£40.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Portsmouth_Hoodie_1024x1024@2x.png?v=1759827236',
       'description': 'Show your Portsmouth pride with this comfy hoodie. Great for chilly days and casual wear.',
     },
     {
       'title': 'City Magnet',
       'price': 5.00,
-      'priceStr': '\u00a35.00',
+      'priceStr': '£5.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
       'description': 'A fun Portsmouth city magnet for your fridge or collection.',
     },
     {
       'title': 'Personalised Mug',
       'price': 12.00,
-      'priceStr': '\u00a312.00',
+      'priceStr': '£12.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Personalised_Mug_1024x1024@2x.png?v=1759827236',
       'description': 'Enjoy your favorite drink in a personalized mug. Makes a great gift!',
     },
     {
       'title': 'Tote Bag',
       'price': 8.00,
-      'priceStr': '\u00a38.00',
+      'priceStr': '£8.00',
       'imageUrl': 'https://shop.upsu.net/cdn/shop/files/Tote_Bag_1024x1024@2x.png?v=1759827236',
       'description': 'A sturdy tote bag for shopping, books, or everyday use.',
     },
@@ -155,7 +155,7 @@ class _ProductPageState extends State<ProductPage> {
                   const SizedBox(height: 12),
                   const Row(
                     children: [
-                      PriceStyle(oldPrice: '\u00a310.00', newPrice: '\u00a36.99')
+                      PriceStyle(oldPrice: '£10.00', newPrice: '£6.99')
                     ],
                   ),
                   const SizedBox(height: 16),
