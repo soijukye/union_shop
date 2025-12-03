@@ -15,7 +15,83 @@ The footer should appear at the bottom of the page, using a layout that keeps it
 - The footer is present on all main pages where required.
 - The layout uses LayoutBuilder, ConstrainedBox, and Expanded to ensure correct footer placement.
 
+
+
+## 4. Cart Functionality
+
+### Description
+Implements a cart where users can add products only from the product details page, adjust quantities, and remove items. Cart state is managed globally.
+
+### User Stories
+- **As a user**, I want to add products to my cart only from the product details page so I can review options before purchase.
+- **As a user**, I want to adjust quantities and remove items in my cart so I have control over my order.
+- **As a developer**, I want cart state to be managed in a single model for consistency.
+
+### Acceptance Criteria
+- Cart page displays all added items, allows quantity adjustment and removal.
+- CartModel and CartItem are used for state management.
+- Navigation between product and cart pages works as expected.
+
 ---
+
+## 5. Checkout Flow
+
+### Description
+Implements a checkout page accessible from the cart, allowing users to complete their purchase.
+
+### User Stories
+- **As a user**, I want to proceed to checkout from the cart page to complete my purchase.
+
+### Acceptance Criteria
+- Checkout page is accessible from the cart and completes the purchase flow.
+
+---
+
+## 6. Product Details Page
+
+### Description
+Adds a dedicated product details page with product option selectors (size, color, quantity) and add-to-cart logic.
+
+### User Stories
+- **As a user**, I want to view detailed information about a product so I can make informed decisions.
+- **As a user**, I want to select product options (size, color, quantity) before adding to cart.
+- **As a developer**, I want a reusable product details page for all products.
+
+### Acceptance Criteria
+- Product details page displays all relevant product information and options.
+- Option selectors for size, color, and quantity are present and functional.
+- Add-to-cart logic works from the product details page.
+
+---
+
+## 7. Sale Price Display
+
+### Description
+Sale prices are displayed with strikethrough for old prices where applicable.
+
+### User Stories
+- **As a user**, I want to see sale prices clearly marked with the original price struck through.
+
+### Acceptance Criteria
+- Sale prices are shown with strikethrough for the old price and highlight for the new price.
+
+---
+
+## 6. Layout and Overflow Handling
+
+### Description
+Ensures all main pages handle scroll, overflow, spacing, and sizing correctly. Prevents content from overflowing the viewport and maintains a visually consistent layout.
+
+### User Stories
+- **As a user**, I want all content to be visible and never overflow the screen so I can browse comfortably.
+- **As a user**, I want consistent spacing and sizing for a professional look.
+- **As a developer**, I want to prevent layout errors and overflows across all pages.
+
+### Acceptance Criteria
+- No RenderFlex or overflow errors on any page.
+- Spacing and sizing are consistent across all main pages.
+- Scroll/overflow is handled for About Us, Cart, and other content-heavy pages.
+- Layout is responsive and adapts to different screen sizes.
 
 ## 2. Top Navigation Bar
 
