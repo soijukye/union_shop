@@ -5,7 +5,7 @@ import 'package:union_shop/models/cart_model.dart';
 import 'package:union_shop/widgets/product_card.dart';
 
 class CollectionsPage extends StatefulWidget {
-  // TEMPORARY NOTE: This is the CollectionsPage
+
   final CartModel cartModel;
   const CollectionsPage({Key? key, required this.cartModel}) : super(key: key);
 
@@ -73,7 +73,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TEMPORARY NOTE: You are on the CollectionsPage
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

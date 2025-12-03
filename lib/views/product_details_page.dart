@@ -5,7 +5,7 @@ import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/models/cart_item.dart';
 
 class ProductDetailsPage extends StatefulWidget {
-  // TEMPORARY NOTE: This is the ProductDetailsPage (product details)
+
   final Map<String, dynamic> product;
   const ProductDetailsPage({Key? key, required this.product}) : super(key: key);
 
@@ -71,7 +71,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TEMPORARY NOTE: You are on the ProductDetailsPage (product details)
+
     final cartModel = widget.product['cartModel'];
     // Merge product with defaults for missing fields
     final String title = widget.product['title'] ?? '';

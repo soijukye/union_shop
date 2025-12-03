@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
-
-
 import 'package:union_shop/models/cart_model.dart';
 
 
-import 'package:union_shop/models/cart_item.dart';
 
 class CartPage extends StatefulWidget {
-	// TEMPORARY NOTE: This is the CartPage
-	final CartModel cartModel;
+  final CartModel cartModel;
 	const CartPage({Key? key, required this.cartModel}) : super(key: key);
 
 	@override
@@ -21,7 +17,6 @@ class _CartPageState extends State<CartPage> {
 
 	@override
 	Widget build(BuildContext context) {
-		// TEMPORARY NOTE: You are on the CartPage
 		return Scaffold(
 			backgroundColor: Colors.white,
 			body: SingleChildScrollView(
@@ -94,7 +89,7 @@ class _CartPageState extends State<CartPage> {
 										child: Column(
 											children: [
 												if (widget.cartModel.items.isEmpty)
-													// Keep empty box similar size as if three items were present
+													// Keeps empty box large enough so footer doesn't jump up
 													SizedBox(
 														height: 370,
 														child: Center(

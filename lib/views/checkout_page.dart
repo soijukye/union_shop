@@ -1,4 +1,4 @@
-// TEMPORARY NOTE: This is the CheckoutPage
+
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/widgets/footer_widget.dart';
@@ -14,7 +14,7 @@ class CheckoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      // TEMPORARY NOTE: You are on the CheckoutPage
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

@@ -5,7 +5,7 @@ import 'package:union_shop/widgets/footer_widget.dart';
 import 'package:union_shop/models/cart_model.dart';
 
 class HomeScreen extends StatelessWidget {
-  // TEMPORARY NOTE: This is the HomeScreen page
+
   final CartModel cartModel;
   const HomeScreen({super.key, required this.cartModel});
 
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TEMPORARY NOTE: You are on the HomeScreen page
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

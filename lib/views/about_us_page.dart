@@ -6,7 +6,7 @@ import 'package:union_shop/widgets/top_navbar.dart';
 import 'package:union_shop/models/cart_model.dart';
 
 class AboutUsPage extends StatelessWidget {
-  // TEMPORARY NOTE: This is the AboutUsPage
+
   final CartModel cartModel;
   const AboutUsPage({Key? key, required this.cartModel}) : super(key: key);
 
@@ -27,7 +27,7 @@ class AboutUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      // TEMPORARY NOTE: You are on the AboutUsPage
+
     
     return Scaffold(
       backgroundColor: Colors.white,
